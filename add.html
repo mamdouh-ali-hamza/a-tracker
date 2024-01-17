@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add activity</title>
+    <link rel="stylesheet" href="/static/style-add.css">
+</head>
+<body>
+    <div id="notification"></div>
+
+    <div class="container">
+        <h3>New Activity</h3>
+
+        <form action="/add" method="get" class="group" id="addForm">
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="a name for the activity.." id=""  required>
+
+            <label for="category" class="tab">Category:</label>
+            <select name="category"  required>
+                <option disabled selected value> -- select a category -- </option>
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Sport">Sport</option>
+                <option value="Social">Social</option>
+                <option value="Spirtual">Spirtual</option>
+                <option value="Creative">Creative</option>
+                <option value="Chill">Chill</option>
+                <option value="Other">Other</option>
+            </select>     <br>
+
+            <label for="date"   class="tab">Date</label>
+            <input type="date" name="date" id="dateField" max="2024-12-31"  min="2024-01-01" required>
+
+        
+
+            <label for="duration" class="tab" required>Duration</label>
+            <input type="number" name="duration" placeholder="(minutes)" id="" min="5" value="10">   <br>
+
+            
+            
+            <input type="submit" value="Submit" id="submit">
+            <input type="reset" value="Reset" id="reset">
+        </form>
+    </div>
+
+    <script src="/static/script-add.js"></script>
+</body>
+</html>
