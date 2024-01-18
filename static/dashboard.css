@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #363636;
+    margin: 0;
+    padding: 0 1em;
+    /* display: flex; */
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.allContainer{
+    display: flex;
+    
+}
+
+.half {
+    width: 50%;
+    height: 80.9vh;
+    /* border: 1px solid #ccc; Optional: Add a border for visibility */
+    margin: 0.5em;
+}
+
+.container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* width: 200px; */
+    text-align: center;
+    box-shadow: 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+
+.group {
+    
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+
+#title-and-nav {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 1em 5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+#navbar {
+    background-color: #1e1e1e;
+    overflow: hidden;
+}
+
+#navbar a {
+    float: left;
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: medium;
+    border-radius: 8px;
+}
+
+#navbar a:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+table, th, td,tbody, thead {
+    border: 3px solid rgb(225, 225, 225);
+    border-collapse: collapse;
+}
+
+th{
+    /* color: #ffffff; */
+    background-color: #454545;
+}
+
+tr:hover {
+    background-color: #D6EEEE;
+}
+
+
+
+
+.my-chart {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 250px 50px;
+    grid-template-areas:
+      "data-axis-1 chart data-axis-2"
+      ". primary-axis .";
+}
+.my-chart .column {
+grid-area: chart;
+}
+.my-chart .primary-axis {
+grid-area: primary-axis;
+}
+.my-chart .data-axis-1 {
+grid-area: data-axis-1;
+writing-mode: tb-rl;
+transform: rotateZ(180deg);
+}
+.my-chart .data-axis-2 {
+grid-area: data-axis-2;
+writing-mode: tb-rl;
+transform: rotateZ(360deg);
+}
+  
+caption {
+    font-size: 30px;
+}

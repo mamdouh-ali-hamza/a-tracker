@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link rel="stylesheet" href="/static/dist/charts.min.css">
+</head>
+<body>
+    <div id="title-and-nav">
+        <h1>A-Tracker</h1>
+        <div id="navbar">
+            <a href="#home">Add Activity</a>
+            <a href="#about">All activities</a>
+            <a href="#services">Settings</a>
+            <a href="#contact">Log Out</a>
+        </div>
+    </div>
+
+    <div class="allContainer">
+
+        <div class="container half">
+
+            <p>Day:  <input type="date" name="dailyDate" id="dailyDate" max="2024-12-31"  min="2024-01-01"></p>
+            
+            <div class="group my-chart">
+                
+                <table class="charts-css column show-heading show-labels show-data-on-hover data-outside  show-4-secondary-axes data-spacing-5">
+                    <caption>Daily activities</caption>
+
+                    <thead>
+                        <tr>
+                            <th scope="col"> Category </th>
+                            <th scope="col"> Duration </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"> Work </th>
+                            <td style="--size: calc( $$WORK$$ / $$HEIGHT$$ );"> <span class="data"> $$WORK$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Study </th>
+                            <td style="--size: calc( $$STUDY$$/ $$HEIGHT$$ );"> <span class="data"> $$STUDY$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Sport </th>
+                            <td style="--size: calc( $$SPORT$$ / $$HEIGHT$$ );"> <span class="data"> $$SPORT$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Social </th>
+                            <td style="--size: calc( $$SOCIAL$$ / $$HEIGHT$$ );"> <span class="data"> $$SOCIAL$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Spiritual </th>
+                            <td style="--size: calc( $$SPIRITUAL$$ / $$HEIGHT$$ );"> <span class="data"> $$SPIRITUAL$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Creative </th>
+                            <td style="--size: calc( $$CREATIVE$$ / $$HEIGHT$$ );"> <span class="data"> $$CREATIVE$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Chill </th>
+                            <td style="--size: calc( $$CHILL$$ / $$HEIGHT$$ );"> <span class="data"> $$CHILL$$ </span> </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Other </th>
+                            <td style="--size: calc( $$OTHER$$ / $$HEIGHT$$ );"> <span class="data"> $$OTHER$$ </span> </td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+
+                <div class="data-axis-1"> Duration </div>
+
+            </div>
+
+            <div class="group">
+                
+            </div>
+            
+        </div>
+
+
+
+
+        <!-- Second Half -->
+
+        <div class="container half">
+            
+            <!-- <div class="group">$$NO_DATA_MESSAGE$$</div> -->
+
+            <div class="group">
+
+                <table>
+                    <thead>
+                        <tr>
+                            $$TABLE_HEAD$$
+                            <!-- <th>Name</th><th>Category</th><th>Date</th><th>Duration</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $$DATA$$
+                    </tbody>
+                </table>
+
+            </div>
+            
+        </div>
+
+    </div>
+    
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+document.getElementById("dailyDate").valueAsDate = new Date();
