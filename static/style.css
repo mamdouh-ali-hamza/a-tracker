@@ -7,7 +7,14 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    /* background-image: url("/static/images/OIG.jpeg");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;  */
 }
+
+
 
 
 
@@ -20,19 +27,11 @@ body {
     text-align: center;
     /*  */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
 }
 
-.containerAdd {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 700px;
-    text-align: center;
-    /*  */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-}
+
+
 
 
 
@@ -41,11 +40,12 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* display: flex; */
+    /* margin-top: 1em; */
+    
 }
 
-/* .group input{
-    display: inline-block;
-} */
 
 input {
     width: 100%;
@@ -57,16 +57,24 @@ input {
     border-radius: 4px;
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.button{
+    background-color: #457da0;
+    width: 150px;
+    font-size: 15px;
 }
 
-button:hover {
-    background-color: #45a049;
+.button:hover {
+    background-color: #04ad25;
+} 
+
+#buttonExit{
+    background-color: #963a3a;
+    width: 150px;
+    font-size: 15px;
+    text-align: center;
 }
+
+#buttonExit:hover {
+    background-color: #e04e4e;
+} 
 

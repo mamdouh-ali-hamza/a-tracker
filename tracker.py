@@ -26,6 +26,14 @@ def get_data():
     return data
 
 
+# add user
+def add_user(new_user):
+    usersdb = open("/static/db/users.txt", "a")
+    usersdb.write(new_user)
+    usersdb.write("\n")
+    usersdb.close()
+
+
 # The home/login page
 @app.route("/")
 def home():
@@ -34,8 +42,21 @@ def home():
 
 # registeration page
 @app.route("/register")
-def register():
+def register_page():
     return get_html("register")
+
+
+# 
+@app.route("/new-user")
+def register():
+    html_page = get_html("/")
+    registerName = flask.request.args.get("registerName")
+    registerUsername = flask.request.args.get("registerUsername")
+    registerPassword = flask.request.args.get("registerPassword")
+    new_user = registerName + "," + registerUsername + "," + registerPassword
+    add_user(new_user)
+    return html_page
+    
 
 
 
@@ -48,9 +69,9 @@ def add():
     date = flask.request.args.get("date")
     duration = flask.request.args.get("duration")
     new_data = str(name) + "," + str(category) + "," + str(date) + "," + str(duration)
-    if new_data!="None,None,None,None":
-        add_data(new_data)
-    new_data = "None,None,None,None" 
+    
+    add_data(new_data)
+     
     return html_page
     
     
@@ -103,8 +124,6 @@ def dashboard():
     # daily_date = flask.request.args.get("dailyDate")
     
     
-    
-    
 
     print(activities_duraion)
 
@@ -114,5 +133,4 @@ def dashboard():
     html_page = html_page.replace('$$WORK$$', str(activities_duraion[0])).replace('$$STUDY$$', str(activities_duraion[1])).replace('$$SPORT$$', str(activities_duraion[2])).replace('$$SOCIAL$$', str(activities_duraion[3])).replace('$$SPIRITUAL$$', str(activities_duraion[4])).replace('$$CREATIVE$$', str(activities_duraion[5])).replace('$$CHILL$$', str(activities_duraion[6])).replace('$$OTHER$$', str(activities_duraion[7]))
     
     return html_page.replace("$$DATA$$", actual_values).replace("$$TABLE_HEAD$$", table_head)
-
 

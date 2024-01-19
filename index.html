@@ -7,20 +7,26 @@
 </head>
 
 <body>
+
     <div class="container">
 
-        <h1>My Tracker App</h1>
+        
+        <h1>A-Tracker</h1>
 
-        <div id="loginContainer" class="group">
-            <p>Hello. </p>
-            <input type="text" placeholder="Enter your username" id="loginUsername">
-            <input type="password" placeholder="Enter your password" id="loginPassword">
-            <input type="button" value="Login" id="buttonLogin">
+        <div id="welcomeContainer">
+            <p id="welcome">Hello, My Friend</p>
         </div>
 
-        <p id="newUserLink"><a href="/register">New user?</a></p>
-         
+        <div id="loginContainer">
+            <div id="loginChild" class="group">
+                <label for="usernameText">Username</label>
+                <input type="text" placeholder="Enter your username" name="usernameText" id="usernameText">
+                <input type="button" value="Enter" id="buttonEnter" class="button">
+            </div>
+        </div>
+
     </div>
 
+    <script src="/static/script.js"></script>
 </body>
 </html>
