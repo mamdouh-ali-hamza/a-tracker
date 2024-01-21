@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activities</title>
+    <link rel="stylesheet" href="/static/activities.css">
+</head>
+
+<body>
+    <div id="hide">
+        <div id="nav">
+            <div id="welcomDashboard">
+            </div>
+            
+            <h1>A-Tracker</h1>
+            <div id="navbar">
+                <a href="/add">Add Activity</a>     <!-- <a href="#" id="openPopupBtn">Add Activity</a> -->
+                <a href="/activities">All Activities</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/">Home</a>
+            </div>
+        </div>
+
+        <div class="allContainer">
+            <div class="container">
+            
+                <!-- <div class="group">$$NO_DATA_MESSAGE$$</div> -->
+    
+                <div class="group">
+    
+                    <!-- <label for="usernameGet">Activities by</label>
+                    <input type="text" name="usernameGet" id="usernameGet" value="" readonly> -->
+    
+                    <table>
+                        <thead>
+                            <tr>
+                                $$TABLE_HEAD$$
+                                <!-- <th>Name</th><th>Category</th><th>Date</th><th>Duration</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            $$DATA$$
+                        </tbody>
+                    </table>
+    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/activities.js"></script>
+</body>
+</html>

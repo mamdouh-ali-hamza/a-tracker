@@ -6,47 +6,11 @@ body {
     /* display: flex; */
     /* justify-content: center; */
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     
 }
 
-.allContainer{
-    display: flex;
-    
-}
-
-.half {
-    width: 50%;
-    height: 80.9vh;
-    /* border: 1px solid #ccc; Optional: Add a border for visibility */
-    margin: 0.5em;
-}
-
-.container {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* width: 200px; */
-    text-align: center;
-    box-shadow: 10px rgba(0, 0, 0, 0.1);
-    
-}
-
-
-
-.group {
-    
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1em;
-    align-items: center;
-}
-
-
-#title-and-nav {
+#nav {
     background-color: #1e1e1e;
     color: #fff;
     padding: 1em 5em;
@@ -59,17 +23,20 @@ body {
 #navbar {
     background-color: #1e1e1e;
     overflow: hidden;
+    
 }
 
 #navbar a {
     float: left;
     display: block;
     color: #fff;
+    background-color: #363636;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: medium;
     border-radius: 8px;
+    margin: 2px;
 }
 
 #navbar a:hover {
@@ -77,24 +44,82 @@ body {
     color: #333;
 }
 
-table, th, td,tbody, thead {
+/* .allContainer{
+    display: flex;
+    
+} */
+
+/* .half {
+    width: 50%;
+    height: 80.9vh; */
+    /* border: 1px solid #ccc; Optional: Add a border for visibility */
+    /* margin: 0.5em;
+} */
+
+.container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* width: 200px; */
+    text-align: center;
+    box-shadow: 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin-top: 0.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.group {
+    
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* margin-bottom: 1em; */
+    align-items: center;
+    text-align: center;
+    margin: 0 0.25em;
+    /* width: 50%; */
+}
+
+#groubBar {
+    width: 48%;
+}
+
+#groupPie {
+    width: 20%;
+}
+
+
+
+
+/* table, th, td,tbody, thead {
     border: 3px solid rgb(225, 225, 225);
     border-collapse: collapse;
 }
 
 th{
     /* color: #ffffff; */
-    background-color: #454545;
+    /* background-color: #4f9fb1;
 }
 
 tr:hover {
     background-color: #D6EEEE;
-}
+} */ 
 
 
 
 
-.my-chart {
+#bar {
+    /* width: 100%;
+    height: 100%;
+    max-height: 500px;
+  max-width: 800px; 
+  margin: 0 auto; */
+
     display: grid;
     align-items: center;
     justify-items: center;
@@ -104,23 +129,89 @@ tr:hover {
       "data-axis-1 chart data-axis-2"
       ". primary-axis .";
 }
-.my-chart .column {
+#bar .column {
 grid-area: chart;
 }
-.my-chart .primary-axis {
+#bar .primary-axis {
 grid-area: primary-axis;
 }
-.my-chart .data-axis-1 {
+#bar .data-axis-1 {
 grid-area: data-axis-1;
 writing-mode: tb-rl;
 transform: rotateZ(180deg);
 }
-.my-chart .data-axis-2 {
+#bar .data-axis-2 {
 grid-area: data-axis-2;
 writing-mode: tb-rl;
 transform: rotateZ(360deg);
 }
   
 caption {
-    font-size: 30px;
+    font-size: 20px;
 }
+
+.column td {
+    animation: jumping-bars 5s linear infinite;
+}
+.column tr:nth-of-type(even) td {
+    animation-delay: 300ms;
+}
+@keyframes jumping-bars {
+    0% { transform: translateY(   0px ); }
+    2% { transform: translateY( -10px ); }
+    4% { transform: translateY(   0px ); }
+}
+.column tr {
+    transition-duration: 0.3s;
+}
+.column tr:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.column tr:hover th {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+  
+
+
+
+
+  
+  
+
+/* #pie {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+#pie .pie {
+    
+}
+#pie .legend {
+    
+}
+
+
+#line {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+#line .line {
+
+}
+#line .legend {
+
+} */
+  
+  
+
+
+
+
+
+
+
+/* #usernameGet, #usernameGetAdd{
+    margin-bottom: 10px;
+}  */

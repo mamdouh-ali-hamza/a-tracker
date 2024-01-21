@@ -8,6 +8,8 @@ const welcome = document.getElementById("welcome");
 const buttonExit = document.createElement("input");
 
 
+
+
 //
 function display(){
     const welcomeMessage = document.createElement("p");
@@ -56,6 +58,9 @@ function exitUser(){
 }
 
 
+
+
+
 //
 usernameText.value = "";
 
@@ -76,3 +81,34 @@ buttonEnter.addEventListener("click", addUser);
 //
 buttonExit.addEventListener("click", exitUser);
 
+
+
+
+
+
+
+// Function to open the popup
+document.addEventListener("DOMContentLoaded", function() {
+    const openPopupBtn = document.getElementById("openPopupBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+
+    openPopupBtn.addEventListener("click", function() {
+        popup.style.display = "block";
+        overlay.style.display = "block";
+    });
+
+    closePopupBtn.addEventListener("click", function() {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+    });
+
+    // Close the popup if the user clicks outside the popup
+    window.addEventListener("click", function(event) {
+        if (event.target === overlay) {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        }
+    });
+});

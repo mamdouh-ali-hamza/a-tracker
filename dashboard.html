@@ -6,109 +6,206 @@
     <link rel="stylesheet" href="/static/dashboard.css">
     <link rel="stylesheet" href="/static/dist/charts.min.css">
 </head>
+
 <body>
-    <div id="title-and-nav">
+    <div id="nav">
+        <div id="welcomDashboard">
+        </div>
+        
         <h1>A-Tracker</h1>
         <div id="navbar">
-            <a href="#home">Add Activity</a>
-            <a href="#about">All activities</a>
-            <a href="#services">Settings</a>
-            <a href="#contact">Log Out</a>
+            <a href="/add">Add Activity</a>     <!-- <a href="#" id="openPopupBtn">Add Activity</a> -->
+            <a href="/activities">All Activities</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/">Home</a>
         </div>
     </div>
 
-    <div class="allContainer">
 
-        <div class="container half">
 
-            <p>Day:  <input type="date" name="dailyDate" id="dailyDate" max="2024-12-31"  min="2024-01-01"></p>
+    <div id="allDashboard" class="allContainer">
+
+        <div class="container">
+
             
-            <div class="group my-chart">
+            
+            <div class="group" id="groubBar">
+            
                 
-                <table class="charts-css column show-heading show-labels show-data-on-hover data-outside  show-4-secondary-axes data-spacing-5">
-                    <caption>Daily activities</caption>
+                <div id="bar">
+                    <table class="charts-css column show-heading show-labels data-outside  show-4-secondary-axes data-spacing-5">
+                        <caption>Duration of Activities</caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col"> Category </th>
+                                <th scope="col"> Duration </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"> Work </th>
+                                <td style="--size: calc( $$WORK$$ / $$HEIGHT$$ );"> <span class="data"> $$WORK$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Study </th>
+                                <td style="--size: calc( $$STUDY$$/ $$HEIGHT$$ );"> <span class="data"> $$STUDY$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Sport </th>
+                                <td style="--size: calc( $$SPORT$$ / $$HEIGHT$$ );"> <span class="data"> $$SPORT$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Social </th>
+                                <td style="--size: calc( $$SOCIAL$$ / $$HEIGHT$$ );"> <span class="data"> $$SOCIAL$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Spiritual </th>
+                                <td style="--size: calc( $$SPIRITUAL$$ / $$HEIGHT$$ );"> <span class="data"> $$SPIRITUAL$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Creative </th>
+                                <td style="--size: calc( $$CREATIVE$$ / $$HEIGHT$$ );"> <span class="data"> $$CREATIVE$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Chill </th>
+                                <td style="--size: calc( $$CHILL$$ / $$HEIGHT$$ );"> <span class="data"> $$CHILL$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Other </th>
+                                <td style="--size: calc( $$OTHER$$ / $$HEIGHT$$ );"> <span class="data"> $$OTHER$$ </span> </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+    
+                    <div class="data-axis-1"> Duration (min) </div>
+                </div>
 
-                    <thead>
-                        <tr>
-                            <th scope="col"> Category </th>
-                            <th scope="col"> Duration </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"> Work </th>
-                            <td style="--size: calc( $$WORK$$ / $$HEIGHT$$ );"> <span class="data"> $$WORK$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Study </th>
-                            <td style="--size: calc( $$STUDY$$/ $$HEIGHT$$ );"> <span class="data"> $$STUDY$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Sport </th>
-                            <td style="--size: calc( $$SPORT$$ / $$HEIGHT$$ );"> <span class="data"> $$SPORT$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Social </th>
-                            <td style="--size: calc( $$SOCIAL$$ / $$HEIGHT$$ );"> <span class="data"> $$SOCIAL$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Spiritual </th>
-                            <td style="--size: calc( $$SPIRITUAL$$ / $$HEIGHT$$ );"> <span class="data"> $$SPIRITUAL$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Creative </th>
-                            <td style="--size: calc( $$CREATIVE$$ / $$HEIGHT$$ );"> <span class="data"> $$CREATIVE$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Chill </th>
-                            <td style="--size: calc( $$CHILL$$ / $$HEIGHT$$ );"> <span class="data"> $$CHILL$$ </span> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Other </th>
-                            <td style="--size: calc( $$OTHER$$ / $$HEIGHT$$ );"> <span class="data"> $$OTHER$$ </span> </td>
-                        </tr>
-                    </tbody>
+            </div>
+
+            
+
+
+
+            <div class="group" id="groupPie">
+                <div id="pie">
+                    <table class="charts-css pie show-heading hide-data">
+                        <caption> Frequency of Activities </caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col"> Category </th>
+                                <th scope="col"> Duration </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"> Work </th>
+                                <td style="--start: 0; --end: calc( $$WORKF$$ / $$COUNT$$ );"> $$WORKF$$ </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Study </th>
+                                <td style="--start: calc( $$WORKF$$ / $$COUNT$$ ); --end: calc(( $$WORKF$$ + $$STUDYF$$ )/ $$COUNT$$ );"> <span class="data"> $$STUDYF$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Sport </th>
+                                <td style="--start: calc(( $$WORKF$$ + $$STUDYF$$ )/ $$COUNT$$ ); --end: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ )/ $$COUNT$$ );"> <span class="data"> $$SPORTF$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Social </th>
+                                <td style="--start: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ )/ $$COUNT$$ ); --end: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ )/ $$COUNT$$ );"> <span class="data"> $$SOCIALF$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Spiritual </th>
+                                <td style="--start: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ )/ $$COUNT$$ ); --end: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ + $$SPIRITUALF$$ )/ $$COUNT$$ );"> <span class="data"> $$SPIRITUALF$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Creative </th>
+                                <td style="--start: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ + $$SPIRITUALF$$ )/ $$COUNT$$ ); --end: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ + $$SPIRITUALF$$ + $$CREATIVEF$$ )/ $$COUNT$$ );"> <span class="data"> $$CREATIVEF$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Chill </th>
+                                <td style="--start: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ + $$SPIRITUALF$$ + $$CREATIVEF$$ )/ $$COUNT$$ ); --end: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ + $$SPIRITUALF$$ + $$CREATIVEF$$ + $$CHILLF$$ )/ $$COUNT$$ );"> <span class="data"> $$CHILLF$$ </span> </td>                              
+                            </tr>
+                            <tr>
+                                <th scope="row"> Other </th>
+                                <td style="--start: calc(( $$WORKF$$ + $$STUDYF$$ + $$SPORTF$$ + $$SOCIALF$$ + $$SPIRITUALF$$ + $$CREATIVEF$$ + $$CHILLF$$ )/ $$COUNT$$ ); --end: 1;"> <span class="data"> $$OTHERF$$ </span> </td>
+                            </tr>
+                        </tbody>
+    
+                    </table>
+    
                     
-                </table>
-
-                <div class="data-axis-1"> Duration </div>
-
+                </div>
             </div>
 
-            <div class="group">
-                
-            </div>
-            
+
+
+
+
+
+
+
+
+            <!-- <div class="group">
+                <div id="line">
+                    <table class="charts-css line multiple">
+                    <caption> Line Chart Heading </caption>
+    
+                        <thead>
+                            <tr>
+                                <th scope="col"> Category </th>
+                                <th scope="col"> Duration </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"> Work </th>
+                                <td style="--start: 0; --end: $$WORKF$$ ;"> $$WORKF$$ </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Study </th>
+                                <td style="--start: $$WORKF$$ ; --end: calc(( $$WORK$$ + $$STUDY$$ )/ $$SUM$$ );"> <span class="data"> $$STUDY$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Sport </th>
+                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ )/ $$SUM$$ );"> <span class="data"> $$SPORT$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Social </th>
+                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ )/ $$SUM$$ );"> <span class="data"> $$SOCIAL$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Spiritual </th>
+                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ )/ $$SUM$$ );"> <span class="data"> $$SPIRITUAL$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Creative </th>
+                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ )/ $$SUM$$ );"> <span class="data"> $$CREATIVE$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Chill </th>
+                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ + $$CHILL$$ )/ $$SUM$$ );"> <span class="data"> $$CHILL$$ </span> </td>                              
+                            </tr>
+                            <tr>
+                                <th scope="row"> Other </th>
+                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ + $$CHILL$$ )/ $$SUM$$ ); --end: 1;"> <span class="data"> $$OTHER$$ </span> </td>
+                            </tr>
+                        </tbody>
+        
+                    </table>
+        
+                </div>
+            </div> -->
+
+
+
         </div>
 
-
-
-
-        <!-- Second Half -->
-
-        <div class="container half">
-            
-            <!-- <div class="group">$$NO_DATA_MESSAGE$$</div> -->
-
-            <div class="group">
-
-                <table>
-                    <thead>
-                        <tr>
-                            $$TABLE_HEAD$$
-                            <!-- <th>Name</th><th>Category</th><th>Date</th><th>Duration</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        $$DATA$$
-                    </tbody>
-                </table>
-
-            </div>
-            
-        </div>
-
+        
     </div>
+
     
     <script src="/static/dashboard.js"></script>
 </body>

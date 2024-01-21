@@ -1,13 +1,45 @@
 html,Work,2024-01-18,10
-css,Work,2024-01-18,12
-js,Work,2024-01-18,15
-web development,Study,2024-01-18,20
-push ups,Sport,2024-01-18,7
-texting,Social,2024-01-18,5
-praying,Spirtual,2024-01-18,17
-reading,Creative,2024-01-18,9
-video games,Chill,2024-01-18,25
+css,Work,2024-01-18,10
+web development,Study,2024-01-18,10
 python,Study,2024-01-18,10
-git,Study,2024-01-18,10
-running,Sport,2024-01-18,6
+texting,Social,2024-01-18,10
+texting,Social,2024-01-18,10
+praying,Spiritual,2024-01-18,10
+praying,Spiritual,2024-01-18,10
+reading,Creative,2024-01-18,10
+reading,Creative,2024-01-18,10
+video games,Chill,2024-01-18,10
+video games,Chill,2024-01-18,10
+running,Sport,2024-01-18,10
 walking,Sport,2024-01-18,10
+sfs,Other,2024-01-19,10
+sfs,Other,2024-01-19,10
+dgd,Spiritual,2024-01-19,10
+hhh,Social,2024-01-20,10
+hhh,Social,2024-01-20,10
+fhdfgh,Sport,2024-01-20,10
+fhdfgh,Sport,2024-01-20,10
+aaa,Work,2024-01-20,10
+aaa,Work,2024-01-20,10
+cc,Creative,2024-01-20,10
+gg,Work,2024-01-20,10
+hh,Work,2024-01-20,10
+hh,Work,2024-01-20,10
+kk,Spiritual,2024-01-20,10
+ll,Sport,2024-01-20,10
+ll,Sport,2024-01-20,10
+oo,Social,2024-01-20,10
+oo,Social,2024-01-20,10
+jj,Creative,2024-01-20,10
+jj,Creative,2024-01-20,10
+hh,Creative,2024-01-20,10
+hh,Creative,2024-01-20,10
+hh,Creative,2024-01-20,10
+hh,Creative,2024-01-20,10
+uu,Study,2024-01-20,10
+uu,Study,2024-01-20,10
+mm,Social,2024-01-20,10
+mm,Social,2024-01-20,10
+zz,Study,2024-01-20,10
+xx,Study,2024-01-20,10
+vv,Sport,2024-01-20,10
