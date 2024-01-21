@@ -43,3 +43,9 @@ mm,Social,2024-01-20,10
 zz,Study,2024-01-20,10
 xx,Study,2024-01-20,10
 vv,Sport,2024-01-20,10
+running,Sport,2024-01-21,17
+class,Study,2024-01-21,15
+o,Other,2024-01-21,5
+oo,Other,2024-01-21,5
+ooo,Other,2024-01-21,5
+oooo,Other,2024-01-21,5

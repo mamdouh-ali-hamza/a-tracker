@@ -5,6 +5,20 @@ app = flask.Flask("myTracker")
 import os
 
 
+# 
+class Activity:
+    def __init__(self, name, category, date, duration):
+        self.name = name
+        self.category = category
+        self.date = date
+        self.duration = duration
+
+    def make_activity(self):
+        activity = str(self.name) + "," + str(self.category) + "," + str(self.date) + "," + str(self.duration)
+        return activity
+
+    
+
 
 # function to return the name of html page requested
 def get_html(page_name):
@@ -111,7 +125,11 @@ def add_redirected():
     category = flask.request.form['category']             #args.get("category")
     date = flask.request.form['date']                     #args.get("date")
     duration = flask.request.form['duration']             #args.get("duration")
-    new_data = str(name) + "," + str(category) + "," + str(date) + "," + str(duration)
+
+
+    # new_data = str(name) + "," + str(category) + "," + str(date) + "," + str(duration)
+    activity_obj_add = Activity(name, category, date, duration)
+    new_data = activity_obj_add.make_activity()
     
     if len(data) == 1 and data[0] == '':
         add_data_first(new_data)
