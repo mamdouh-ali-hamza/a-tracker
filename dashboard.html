@@ -11,19 +11,30 @@
     <div id="nav">
         <div id="welcomDashboard">
         </div>
+        <div id="pleaseEnter">
+            <p>Please Enter your Username in Home page</p>
+        </div>
         
         <h1>A-Tracker</h1>
         <div id="navbar">
-            <a href="/add">Add Activity</a>     <!-- <a href="#" id="openPopupBtn">Add Activity</a> -->
-            <a href="/activities">All Activities</a>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/add" id="addNav">Add Activity</a>     
+            <a href="/activities" id="allNav">All Activities</a>
+            <a href="/dashboard" id="dashboardNav">Dashboard</a>
             <a href="/">Home</a>
+            <a href="#" id="openPopupBtn">About</a>
         </div>
     </div>
 
 
 
     <div id="allDashboard" class="allContainer">
+
+        <div class="container toFrom">
+            <label for="from">Start Date</label>
+            <input type="text" value=" $$FROM$$ " name="from" id="from" readonly>
+            <label for="to">Last Date</label>
+            <input type="text" value=" $$TO$$ " name="to" id="to" readonly>
+        </div>
 
         <div class="container">
 
@@ -90,7 +101,7 @@
 
             <div class="group" id="groupPie">
                 <div id="pie">
-                    <table class="charts-css pie show-heading hide-data">
+                    <table class="charts-css pie show-heading">
                         <caption> Frequency of Activities </caption>
     
                         <thead>
@@ -141,69 +152,151 @@
             </div>
 
 
-
-
-
-
-
-
-
-            <!-- <div class="group">
-                <div id="line">
-                    <table class="charts-css line multiple">
-                    <caption> Line Chart Heading </caption>
-    
-                        <thead>
-                            <tr>
-                                <th scope="col"> Category </th>
-                                <th scope="col"> Duration </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"> Work </th>
-                                <td style="--start: 0; --end: $$WORKF$$ ;"> $$WORKF$$ </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Study </th>
-                                <td style="--start: $$WORKF$$ ; --end: calc(( $$WORK$$ + $$STUDY$$ )/ $$SUM$$ );"> <span class="data"> $$STUDY$$ </span> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Sport </th>
-                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ )/ $$SUM$$ );"> <span class="data"> $$SPORT$$ </span> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Social </th>
-                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ )/ $$SUM$$ );"> <span class="data"> $$SOCIAL$$ </span> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Spiritual </th>
-                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ )/ $$SUM$$ );"> <span class="data"> $$SPIRITUAL$$ </span> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Creative </th>
-                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ )/ $$SUM$$ );"> <span class="data"> $$CREATIVE$$ </span> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Chill </th>
-                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ )/ $$SUM$$ ); --end: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ + $$CHILL$$ )/ $$SUM$$ );"> <span class="data"> $$CHILL$$ </span> </td>                              
-                            </tr>
-                            <tr>
-                                <th scope="row"> Other </th>
-                                <td style="--start: calc(( $$WORK$$ + $$STUDY$$ + $$SPORT$$ + $$SOCIAL$$ + $$SPIRITUAL$$ + $$CREATIVE$$ + $$CHILL$$ )/ $$SUM$$ ); --end: 1;"> <span class="data"> $$OTHER$$ </span> </td>
-                            </tr>
-                        </tbody>
-        
-                    </table>
-        
-                </div>
-            </div> -->
-
-
-
         </div>
 
         
+
+        <div class="container">
+            <div class="group" id="groupLine">
+                <div id="line">
+
+                    
+                      
+
+                    <table class="charts-css line multiple show-heading show-labels show-primary-axis show-4-secondary-axes show-data-axes labels-align-inline-end">
+                        <caption> Duration of Activity by Day of Week </caption>
+
+                        <thead>
+                            <tr>
+                                <th scope="col"> Day </th>
+                                <th scope="col"> Duration </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <th scope="row"> Monday </th>
+                                <td style="--start: 0; --end: calc( $$Monday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Work$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Study$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Sport$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Social$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Spiritual$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Creative$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Chill$$ </span> </td>
+                                <td style="--start: 0; --end: calc( $$Monday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Monday-Other$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Tuesday </th>
+                                <td style="--start: calc( $$Monday-Work$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Work$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Study$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Study$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Sport$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Sport$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Social$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Social$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Spiritual$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Spiritual$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Creative$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Creative$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Chill$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Chill$$ </span> </td>
+                                <td style="--start: calc( $$Monday-Other$$ / $$HeightLine$$ ); --end: calc( $$Tuesday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Tuesday-Other$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Wednesday </th>
+                                <td style="--start: calc( $$Tuesday-Work$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Work$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Study$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Study$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Sport$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Sport$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Social$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Social$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Spiritual$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Spiritual$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Creative$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Creative$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Chill$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Chill$$ </span> </td>
+                                <td style="--start: calc( $$Tuesday-Other$$ / $$HeightLine$$ ); --end: calc( $$Wednesday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Wednesday-Other$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Thursday </th>
+                                <td style="--start: calc( $$Wednesday-Work$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Work$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Study$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Study$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Sport$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Sport$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Social$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Social$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Spiritual$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Spiritual$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Creative$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Creative$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Chill$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Chill$$ </span> </td>
+                                <td style="--start: calc( $$Wednesday-Other$$ / $$HeightLine$$ ); --end: calc( $$Thursday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Thursday-Other$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Friday </th>
+                                <td style="--start: calc( $$Thursday-Work$$ / $$HeightLine$$ ); --end: calc( $$Friday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Work$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Study$$ / $$HeightLine$$ ); --end: calc( $$Friday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Study$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Sport$$ / $$HeightLine$$ ); --end: calc( $$Friday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Sport$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Social$$ / $$HeightLine$$ ); --end: calc( $$Friday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Social$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Spiritual$$ / $$HeightLine$$ ); --end: calc( $$Friday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Spiritual$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Creative$$ / $$HeightLine$$ ); --end: calc( $$Friday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Creative$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Chill$$ / $$HeightLine$$ ); --end: calc( $$Friday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Chill$$ </span> </td>
+                                <td style="--start: calc( $$Thursday-Other$$ / $$HeightLine$$ ); --end: calc( $$Friday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Friday-Other$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Saturday </th>
+                                <td style="--start: calc( $$Friday-Work$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Work$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Study$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Study$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Sport$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Sport$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Social$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Social$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Spiritual$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Spiritual$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Creative$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Creative$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Chill$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Chill$$ </span> </td>
+                                <td style="--start: calc( $$Friday-Other$$ / $$HeightLine$$ ); --end: calc( $$Saturday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Saturday-Other$$ </span> </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> Sunday </th>
+                                <td style="--start: calc( $$Saturday-Work$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Work$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Work$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Study$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Study$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Study$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Sport$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Sport$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Sport$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Social$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Social$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Social$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Spiritual$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Spiritual$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Spiritual$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Creative$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Creative$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Creative$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Chill$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Chill$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Chill$$ </span> </td>
+                                <td style="--start: calc( $$Saturday-Other$$ / $$HeightLine$$ ); --end: calc( $$Sunday-Other$$ / $$HeightLine$$ );"> <span class="data"> $$Sunday-Other$$ </span> </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <div class="primary-axis"> Day of Week </div>
+
+                    <div class="data-axis-1"> Duration </div>
+
+                    <ul class="charts-css legend legend-line">
+                        <li> Work </li>
+                        <li> Study </li>
+                        <li> Sport </li>
+                        <li> Social </li>
+                        <li> Spiritual </li>
+                        <li> Creative </li>
+                        <li> Chill </li>
+                        <li> Other </li>
+                    </ul>
+                    
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        
+    </div>
+
+
+
+    <!-- popup window to addd activities -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <div class="close" id="closePopupBtn">&times;</div>
+
+            <div class="container">
+                <h3>About A-Tracker</h3>
+                <p>Description</p>
+            </div>
+
+        </div>
     </div>
 
     

@@ -46,6 +46,8 @@ function addUser(){
 
         loginContainer.removeChild(loginChild);                                     // remove text box and login button
         welcomeContainer.removeChild(welcome);
+
+        location.reload();
     }
     
 }
@@ -80,6 +82,20 @@ buttonEnter.addEventListener("click", addUser);
 
 //
 buttonExit.addEventListener("click", exitUser);
+
+
+
+
+
+document.getElementById("pleaseEnter").style.display = "none";
+
+if(username == null){
+    document.getElementById("welcomDashboard").style.display = "none";
+    document.getElementById("addNav").style.display = "none";
+    document.getElementById("allNav").style.display = "none";
+    document.getElementById("dashboardNav").style.display = "none";
+    document.getElementById("pleaseEnter").style.display = "inline";
+}
 
 
 

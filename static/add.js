@@ -9,14 +9,18 @@ welcomDashboard.appendChild(usernameWelcome);
 
 
 
-const nav = document.getElementById("nav");
-const all = document.getElementById("all");
+
 
 let username = localStorage.getItem("username");
+document.getElementById("pleaseEnter").style.display = "none";
 
 if(username == null){
-    nav.style.display = "none";
-    all.style.display = "none";
+    document.getElementById("welcomDashboard").style.display = "none";
+    document.getElementById("addNav").style.display = "none";
+    document.getElementById("allNav").style.display = "none";
+    document.getElementById("dashboardNav").style.display = "none";
+    document.getElementById("allAdd").style.display = "none";
+    document.getElementById("pleaseEnter").style.display = "inline";
 }
 
 
@@ -25,20 +29,28 @@ if(username == null){
 
 
 
-// document.getElementById('addForm').addEventListener('submit', function (event) {
-//     event.preventDefault(); // Prevent the default form submission
+// Function to open the popup
+document.addEventListener("DOMContentLoaded", function() {
+    const openPopupBtn = document.getElementById("openPopupBtn");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
 
-//     // Show the notification
-//     showNotification('Activity added successfully!');
-// });
+    openPopupBtn.addEventListener("click", function() {
+        popup.style.display = "block";
+        overlay.style.display = "block";
+    });
 
-// function showNotification(message) {
-//     var notification = document.getElementById('notification');
-//     notification.innerHTML = message;
-//     notification.style.display = 'block';
+    closePopupBtn.addEventListener("click", function() {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+    });
 
-//     // Hide the notification after 3 seconds (adjust as needed)
-//     setTimeout(function () {
-//         notification.style.display = 'none';
-//     }, 3000);
-// }
+    // Close the popup if the user clicks outside the popup
+    window.addEventListener("click", function(event) {
+        if (event.target === overlay) {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        }
+    });
+});

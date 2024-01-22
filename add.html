@@ -6,23 +6,26 @@
     <link rel="stylesheet" href="/static/add.css">
 </head>
 <body>
-    <div id="notification"></div>
 
     <div id="nav">
         <div id="welcomDashboard">
         </div>
+        <div id="pleaseEnter">
+            <p>Please Enter your Username in Home page</p>
+        </div>
         
         <h1>A-Tracker</h1>
         <div id="navbar">
-            <a href="/add">Add Activity</a>     <!-- <a href="#" id="openPopupBtn">Add Activity</a> -->
-            <a href="/activities">All Activities</a>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/add" id="addNav">Add Activity</a>     
+            <a href="/activities" id="allNav">All Activities</a>
+            <a href="/dashboard" id="dashboardNav">Dashboard</a>
             <a href="/">Home</a>
+            <a href="#" id="openPopupBtn">About</a>
         </div>
     </div>
 
 
-    <div id="all" class="allContainer">
+    <div id="allAdd" class="allContainer">
 
 
         <div class="container">
@@ -60,6 +63,23 @@
             </form>
         </div>
 
+    </div>
+
+
+    <!-- popup window to addd activities -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <div class="close" id="closePopupBtn">&times;</div>
+
+            <div class="container">
+                <h3>About A-Tracker</h3>
+                <p>Description</p>
+            </div>
+
+        </div>
     </div>
 
     <script src="/static/add.js"></script>
