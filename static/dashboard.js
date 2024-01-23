@@ -5,6 +5,8 @@ usernameWelcome.innerText = "Welcome, " + localStorage.getItem("username");
 welcomDashboard.appendChild(usernameWelcome);
 
 
+document.getElementById("dateSelected").valueAsDate = new Date();
+
 // document.getElementById("dailyDate").valueAsDate = new Date();
 // document.getElementById("dateField").valueAsDate = new Date();
 
