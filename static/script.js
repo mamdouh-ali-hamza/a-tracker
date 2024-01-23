@@ -128,3 +128,102 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+
+
+
+
+
+
+
+
+function openTab(tabName) {
+    var tabs = document.getElementsByClassName("form-group");
+    
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = "none";
+    }
+
+    document.getElementById(tabName).style.display = "block";
+
+    // Remove "active" class from all tabs
+    var tabButtons = document.getElementsByClassName("tab");
+    for (var i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+    }
+
+    // Add "active" class to the clicked tab
+    document.querySelector(`.tab[href="#"][onclick*='${tabName}']`).classList.add("active");
+}
+
+// function login() {
+//     // Add your login logic here
+//     alert("Login button clicked");
+// }
+
+// function register() {
+//     // Add your registration logic here
+//     alert("Register button clicked");
+// }
+
+// Initially, open the login tab
+openTab("login-form");
+
+
+
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const buttonLogin = document.getElementById("buttonLogin");
+const buttonRegister = document.getElementById("buttonRegister");
+const registerName = document.getElementById("register-name");
+const loginName = document.getElementById("login-name");
+
+
+function submitRegister(){
+    registerForm.submit();
+}
+buttonRegister.addEventListener("click", submitRegister);
+
+function submitLogin(){
+    localStorage.setItem("name", loginName.value);
+    loginForm.submit();
+}
+buttonLogin.addEventListener("click", submitLogin);
+
+
+
+
+
+
+
+
+
+
+
+// Function to display flash messages
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to display flash messages
+    function displayFlashMessage(message, messageType) {
+        var container = document.getElementById('flash-messages');
+
+        var alertDiv = document.createElement('div');
+        alertDiv.className = 'alert';
+        alertDiv.classList.add('alert-' + messageType);
+        alertDiv.innerHTML = message;
+
+        container.appendChild(alertDiv);
+
+        // Hide the message after 5 seconds
+        setTimeout(function() {
+            container.removeChild(alertDiv);
+        }, 5000);
+    }
+
+    // Fetch and display flash messages on page load
+    var urlParams = new URLSearchParams(window.location.search);
+    var flashMessage = urlParams.get('flash_message');
+    if (flashMessage) {
+        displayFlashMessage(flashMessage, 'success');  // You may adjust 'success' based on your message type
+    }
+});
+

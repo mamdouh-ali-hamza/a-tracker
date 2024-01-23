@@ -26,6 +26,9 @@ if(username == null){
 
 
 
+// const usernameField = document.getElementById("usernameField");
+
+// usernameField.value = username;
 
 
 

@@ -33,7 +33,7 @@
 
             <form action="/addRedirected" method="post" class="group" id="addForm">
                 <label for="name">Name</label>
-                <input type="text" name="name" placeholder="a name for the activity.." value="" id=""  required>
+                <input type="text" name="name" placeholder="a name for the activity.." value=""  required>
 
                 <label for="category" class="tab">Category</label>
                 <select name="category"  required>
@@ -54,9 +54,13 @@
             
 
                 <label for="duration" class="tab" required>Duration</label>
-                <input type="number" name="duration" placeholder="(minutes)" id="" min="5" value="10">   <br>
+                <input type="number" name="duration" placeholder="(minutes)" min="5" value="10">   
 
-                
+
+                <!-- <input type="text" name="usernameField" id="usernameField" value="" hidden> -->
+
+                <br>
+
                 
                 <input type="submit" value="Submit" id="submit">
                 <input type="reset" value="Reset" id="reset">

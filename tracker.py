@@ -36,26 +36,42 @@ def get_html(page_name):
     return content
 
 
+# 
+def get_users():
+    users_file = open("users.txt")     
+    content = users_file.read()
+    users_file.close()
+    data = content.split("\n")
+    return data
+
+
+# 
+def add_user(new_user):
+    usersdb = open("users.txt", "a")     
+    usersdb.write("\n")
+    usersdb.write(new_user)
+    usersdb.close()
+
+
 # function to create the file if not exist
 def create_data():
     if not os.path.exists("data.txt"):
         db = open("data.txt", "a")     #("static/db/" + str(find_username()) + ".txt", "a")
-        # db.write(",,,")
         db.close()
 
 
 # add data to text file seperated by new line
 def add_data(new_data):
-    notesdb = open("data.txt", "a")     #("static/db/" + str(find_username()) + ".txt", "a")
-    notesdb.write("\n")
-    notesdb.write(new_data)
-    notesdb.close()
+    db = open("data.txt", "a")     #("static/db/" + str(find_username()) + ".txt", "a")
+    db.write("\n")
+    db.write(new_data)
+    db.close()
 
 # add the first data in newly created file
 def add_data_first(new_data):
-    notesdb = open("data.txt", "a")
-    notesdb.write(new_data)
-    notesdb.close()
+    db = open("data.txt", "a")
+    db.write(new_data)
+    db.close()
 
 # read user data
 def get_data():
@@ -91,9 +107,9 @@ def weekday_activity_duration(activity_obj_day, weekday_dict_duration, category,
 
 # #
 # def find_username():
-#     input_string = get_html("index")
+#     input_string = get_html("add")
 #     target_word = "Welcome, "
-#     end_character = "</p>"
+#     end_character = "</h3>"
 
 #     # Find the index of the target word
 #     index_of_word = input_string.find(target_word)
@@ -126,6 +142,56 @@ def home():
     return get_html("index")
 
 
+# ############################################################################################
+@app.route("/registerRedirected", methods=['POST'])
+def register_redirected():
+    users = get_users()
+
+    name = flask.request.form['register-name']
+    username = flask.request.form['register-username']
+    password = flask.request.form['register-password']
+    
+    
+
+    for user in users:
+        if str(username).strip() == user[1].strip():
+            flash_message = "Username already exists. Please choose a different username."
+            return flask.redirect(flask.url_for('home', flash_message=flash_message))
+        else:
+            add_user(str(name) + "," + str(username) + "," + str(password))
+            flash_message = "User registered successfully!"
+            return flask.redirect(flask.url_for('home', flash_message=flash_message))
+    
+    
+
+
+    
+@app.route("/loginRedirected", methods=['POST'])
+def login_redirected():
+    users = get_users()
+
+    username = flask.request.form['login-username']
+    password = flask.request.form['login-password']
+
+    for user in users:
+        if str(username).strip() == user[1].strip():
+            if str(password).strip() == user[2].strip():
+                flash_message = "login successfully!"
+                return flask.redirect(flask.url_for('home', flash_message=flash_message))
+            else:
+                flash_message = "wrong password"
+                return flask.redirect(flask.url_for('home', flash_message=flash_message))
+        flash_message = "wrong username"
+        return flask.redirect(flask.url_for('home', flash_message=flash_message))
+    
+
+
+    
+# @app.route('/homeFlash')
+# def home_flash():
+#     flash_message = flask.request.args.get('flash_message')
+#     return f'<p>{flash_message}</p>' if flash_message else 'Welcome to the home page!'
+
 
 # page to add new activity
 @app.route("/add")
@@ -135,7 +201,7 @@ def add():
 
 
 
-# page to view new activity added ("Post/Redirect/Get": solving the problem when refreshing the page the form auto submit last data)
+## page to redirect from add activity to all activities pages  ("Post/Redirect/Get": solving the problem when refreshing the page the form auto submit last data)
 @app.route("/addRedirected", methods=['POST'])
 def add_redirected():
     data = get_data()
@@ -146,7 +212,6 @@ def add_redirected():
     duration = flask.request.form['duration']             #args.get("duration")
 
 
-    # new_data = str(name) + "," + str(category) + "," + str(date) + "," + str(duration)
     activity_obj_add = Activity(name, category, date, duration)
     new_data = activity_obj_add.make_activity()
     
@@ -158,7 +223,9 @@ def add_redirected():
 
 
 
-# page to view table of all activities
+
+
+## page to view table of all activities
 @app.route("/activities")
 def activities():
     html_page = get_html("activities")
@@ -166,33 +233,22 @@ def activities():
     
     # the table in the the right half of the dashboard page
     table_head = "<th>Name</th><th>Category</th><th>Date</th><th>Duration</th>"
-    actual_values = ""
+    
 
     if len(data) == 1 and data[0] == '':
         return html_page.replace("$$TABLE_HEAD$$", table_head).replace("$$DATA$$", "<tr><td></td><td></td><td></td><td></td></tr>")
 
-    activities_duraion = [0, 0, 0, 0, 0, 0, 0, 0]       # [Work, Study, Sport, Social, Spiritual, Creative, Chill, Other]
+
+    actual_values = ""
 
     for row in data:
         actual_values += "<tr>"
         col = row.split(",")
 
-        if col[1] == 'Work':
-            activities_duraion[0] += int(col[3])
-        elif col[1] == 'Study':
-            activities_duraion[1] += int(col[3])
-        elif col[1] == 'Sport':
-            activities_duraion[2] += int(col[3])
-        elif col[1] == 'Social':
-            activities_duraion[3] += int(col[3])
-        elif col[1] == 'Spiritual':
-            activities_duraion[4] += int(col[3])
-        elif col[1] == 'Creative':
-            activities_duraion[5] += int(col[3])
-        elif col[1] == 'Chill':
-            activities_duraion[6] += int(col[3])
-        elif col[1] == 'Other':
-            activities_duraion[7] += int(col[3])
+        # # remove username before viewing data in table
+        # col.pop()
+
+        
 
         for td in col:
             actual_values += "<td>" + td + "</td>"
@@ -203,7 +259,10 @@ def activities():
     return html_page
 
 
-# The dashboard page
+
+
+
+## The dashboard page
 @app.route("/dashboard")
 def dashboard():
     html_page = get_html("dashboard")

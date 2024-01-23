@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Tracker</title>
+    <title>A-Tracker</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
@@ -43,6 +43,50 @@
         </div>
 
     </div>
+
+
+
+
+    <div class="container">
+
+        <h1>A-Tracker</h1>
+
+        <div id="welcomeContainer2">
+            <p id="welcome">Hello, My Friend</p>
+        </div>
+
+        <div id="loginContainer2">
+            <div class="tabs">
+                <a href="#" class="tab" onclick="openTab('login-form')">Login</a>
+                <a href="#" class="tab" onclick="openTab('register-form')">Register</a>
+            </div>
+            
+            <form action="/loginRedirected" method="post" id="login-form" class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" name="login-username" required>
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="login-password" required>
+                <input type="button" value="Login" name="buttonLogin" id="buttonLogin"></input>
+            </form>
+            
+            <form action="/registerRedirected" method="post" id="register-form" class="form-group" style="display:none;">
+                <label for="register-name">Name</label>
+                <input type="text" id="register-name" name="register-name" required>
+                <label for="register-username">Username</label>
+                <input type="text" id="register-username" name="register-username" required>
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" name="register-password" required>
+                <input type="button" value="Register" name="buttonRegister" id="buttonRegister"></input>
+            </form>
+        </div>
+
+        <!-- Container for flash messages -->
+        <div id="flash-messages"></div>
+        
+    </div>
+
+
+    
 
 
 
