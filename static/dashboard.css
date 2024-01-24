@@ -76,7 +76,7 @@ body {
     margin: 0 0.25em;
 }
 
-.groubColumn {
+.groupColumn {
     width: 48%;
 }
 
@@ -85,6 +85,10 @@ body {
 }
 
 .groupLine {
+    width: 81%;
+}
+
+.groupBar {
     width: 81%;
 }
 
@@ -203,6 +207,10 @@ caption {
   } */
 
 
+#bar {
+    width: 100%;
+    margin: 0 auto;
+}
 
 
 

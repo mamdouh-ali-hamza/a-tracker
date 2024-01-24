@@ -367,7 +367,16 @@ def dashboard():
                         .replace('$$Sunday-Chill$$', "0")
                         .replace('$$Sunday-Other$$', "0")
                         )
-        
+        html_page = (html_page.replace('$$HEIGHTMONTH$$', "1")
+                     .replace('$$WORKMONTH$$', "0")
+                     .replace('$$STUDYMONTH$$', "0")
+                     .replace('$$SPORTMONTH$$', "0")
+                     .replace('$$SOCIALMONTH$$', "0")
+                     .replace('$$SPIRITUALMONTH$$', "0")
+                     .replace('$$CREATIVEMONTH$$', "0")
+                     .replace('$$CHILLMONTH$$', "0")
+                     .replace('$$OTHERMONTH$$', "0")
+                    )
         return html_page
     
     # here the data file not empty 
@@ -382,6 +391,8 @@ def dashboard():
                             'Saturday': [0, 0, 0, 0, 0, 0, 0, 0],
                             'Sunday': [0, 0, 0, 0, 0, 0, 0, 0]
                             }
+    days_passed = 0
+    month_average = [0, 0, 0, 0, 0, 0, 0, 0]                            # [Work, Study, Sport, Social, Spiritual, Creative, Chill, Other]
 
     # data file returned as list of lines
     for row in data:
@@ -424,7 +435,6 @@ def dashboard():
 
         # using method weekday_activity_duration of class Activity to return the name of day of week
         activity_obj_day = Activity(col[0], col[1], col[2], col[3])
-
         # for line chart using list of dates of the days in the week of today
         if col[2] in week_dates_str:
             if col[1] == 'Work':
@@ -450,6 +460,35 @@ def dashboard():
 
             elif col[1] == 'Other':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 7, int(col[3]))
+
+        #for bar chart using average duration of month per day for days passed already for every category
+        if int(str(today_date).split('-')[2]) > days_passed:
+            days_passed = int(col[2].split('-')[2])
+        if str(col[2]).split('-')[1] == str(today_date).split('-')[1]:
+            if col[1] == 'Work':
+                month_average[0] += int(col[3])
+
+            elif col[1] == 'Study':
+                month_average[1] += int(col[3])
+
+            elif col[1] == 'Sport':
+                month_average[2] += int(col[3])
+
+            elif col[1] == 'Social':
+                month_average[3] += int(col[3])
+
+            elif col[1] == 'Spiritual':
+                month_average[4] += int(col[3])
+
+            elif col[1] == 'Creative':
+                month_average[5] += int(col[3])
+
+            elif col[1] == 'Chill':
+                month_average[6] += int(col[3])
+
+            elif col[1] == 'Other':
+                month_average[7] += int(col[3])
+
     
     
     # column chart height depending on the 1.2* tallest column
@@ -546,8 +585,20 @@ def dashboard():
                         .replace('$$Sunday-Other$$', str(weekday_dict_duration['Sunday'][7]))
                         )
 
-    # sum_duration = sum(activities_duraion)
-    # html_page = html_page.replace('$$SUM$$', str(sum_duration))
+    # bar chart
+    height_month = sorted(month_average)[-1] / days_passed * 1.2
+    html_page = html_page.replace('$$HEIGHTMONTH$$', str(height_month))
+    html_page = (html_page.replace('$$WORKMONTH$$', str(round(month_average[0] / days_passed, 2)))
+                 .replace('$$STUDYMONTH$$', str(round(month_average[1] / days_passed, 2)))
+                 .replace('$$SPORTMONTH$$', str(round(month_average[2] / days_passed, 2)))
+                 .replace('$$SOCIALMONTH$$', str(round(month_average[3] / days_passed, 2)))
+                 .replace('$$SPIRITUALMONTH$$', str(round(month_average[4] / days_passed, 2)))
+                 .replace('$$CREATIVEMONTH$$', str(round(month_average[5] / days_passed, 2)))
+                 .replace('$$CHILLMONTH$$', str(round(month_average[6] / days_passed, 2)))
+                 .replace('$$OTHERMONTH$$', str(round(month_average[7] / days_passed, 2)))
+                )
+
+    
     return html_page
 
 
@@ -663,6 +714,16 @@ def dashboard_date_selected():
                         .replace('$$Sunday-Chill$$', "0")
                         .replace('$$Sunday-Other$$', "0")
                         )
+        html_page = html_page.replace('$$HEIGHTMONTH$$', "1")
+        html_page = (html_page.replace('$$WORKMONTH$$', "0")
+                    .replace('$$STUDYMONTH$$', "0")
+                    .replace('$$SPORTMONTH$$', "0")
+                    .replace('$$SOCIALMONTH$$', "0")
+                    .replace('$$SPIRITUALMONTH$$', "0")
+                    .replace('$$CREATIVEMONTH$$', "0")
+                    .replace('$$CHILLMONTH$$', "0")
+                    .replace('$$OTHERMONTH$$', "0")
+                    )
         return html_page
 
     # here the data file not empty 
@@ -677,6 +738,8 @@ def dashboard_date_selected():
                             'Saturday': [0, 0, 0, 0, 0, 0, 0, 0],
                             'Sunday': [0, 0, 0, 0, 0, 0, 0, 0]
                             }
+    days_passed = 0
+    month_average = [0, 0, 0, 0, 0, 0, 0, 0]                            # [Work, Study, Sport, Social, Spiritual, Creative, Chill, Other]
     
     # data file returned as list of lines
     for row in data:
@@ -745,6 +808,34 @@ def dashboard_date_selected():
 
             elif col[1] == 'Other':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 7, int(col[3]))
+
+        #for bar chart using average duration of month per day for days passed already for every category
+        if int(str(date_selected).split('-')[2]) > days_passed:
+            days_passed = int(col[2].split('-')[2])
+        if str(col[2]).split('-')[1] == str(date_selected).split('-')[1]:
+            if col[1] == 'Work':
+                month_average[0] += int(col[3])
+
+            elif col[1] == 'Study':
+                month_average[1] += int(col[3])
+
+            elif col[1] == 'Sport':
+                month_average[2] += int(col[3])
+
+            elif col[1] == 'Social':
+                month_average[3] += int(col[3])
+
+            elif col[1] == 'Spiritual':
+                month_average[4] += int(col[3])
+
+            elif col[1] == 'Creative':
+                month_average[5] += int(col[3])
+
+            elif col[1] == 'Chill':
+                month_average[6] += int(col[3])
+
+            elif col[1] == 'Other':
+                month_average[7] += int(col[3])
     
     # column chart height depending on the 1.2* tallest column
     height_chart = sorted(activities_duraion)[-1] * 1.2
@@ -840,8 +931,18 @@ def dashboard_date_selected():
                         .replace('$$Sunday-Other$$', str(weekday_dict_duration['Sunday'][7]))
                         )
     
-    # sum_duration = sum(activities_duraion)
-    # html_page = html_page.replace('$$SUM$$', str(sum_duration))
+    # bar chart
+    height_month = sorted(month_average)[-1] / days_passed * 1.2
+    html_page = html_page.replace('$$HEIGHTMONTH$$', str(height_month))
+    html_page = (html_page.replace('$$WORKMONTH$$', str(round(month_average[0] / days_passed, 2)))
+                 .replace('$$STUDYMONTH$$', str(round(month_average[1] / days_passed, 2)))
+                 .replace('$$SPORTMONTH$$', str(round(month_average[2] / days_passed, 2)))
+                 .replace('$$SOCIALMONTH$$', str(round(month_average[3] / days_passed, 2)))
+                 .replace('$$SPIRITUALMONTH$$', str(round(month_average[4] / days_passed, 2)))
+                 .replace('$$CREATIVEMONTH$$', str(round(month_average[5] / days_passed, 2)))
+                 .replace('$$CHILLMONTH$$', str(round(month_average[6] / days_passed, 2)))
+                 .replace('$$OTHERMONTH$$', str(round(month_average[7] / days_passed, 2)))
+                )
 
     
     return html_page
