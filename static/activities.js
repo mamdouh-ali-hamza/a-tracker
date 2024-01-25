@@ -1,11 +1,52 @@
 const welcomDashboard = document.getElementById("welcomDashboard");
-
 const usernameWelcome = document.createElement("h3");
+
+
+const buttonDeleteLast = document.getElementById("buttonDeleteLast");
+const backDeleteLast = document.getElementById("backDeleteLast");
+const confirmDeleteLast = document.getElementById("confirmDeleteLast");
+const buttonDeleteAll = document.getElementById("buttonDeleteAll");
+const backDeleteAll = document.getElementById("backDeleteAll");
+const confirmDeleteAll = document.getElementById("confirmDeleteAll");
+
+backDeleteLast.style.display = "none";
+confirmDeleteLast.style.display = "none";
+backDeleteAll.style.display = "none";
+confirmDeleteAll.style.display = "none";
+
+buttonDeleteLast.addEventListener("click", function(){
+    buttonDeleteLast.style.display = "none";
+    backDeleteLast.style.display = "inline";
+    confirmDeleteLast.style.display = "inline";
+});
+buttonDeleteAll.addEventListener("click", function(){
+    buttonDeleteAll.style.display = "none";
+    backDeleteAll.style.display = "inline";
+    confirmDeleteAll.style.display = "inline";
+});
+
+backDeleteLast.addEventListener("click", function(){
+    backDeleteLast.style.display = "none";
+    confirmDeleteLast.style.display = "none";
+    buttonDeleteLast.style.display = "inline";
+});
+backDeleteAll.addEventListener("click", function(){
+    backDeleteAll.style.display = "none";
+    confirmDeleteAll.style.display = "none";
+    buttonDeleteAll.style.display = "inline";
+});
+
+
+
+
+// document.getElementById('table-container').scrollTop = 100;
+let scrollContainer = document.getElementById('table-container');
+scrollContainer.scrollTop = scrollContainer.scrollHeight;
+
+
+
 usernameWelcome.innerText = "Welcome, " + localStorage.getItem("username");
 welcomDashboard.appendChild(usernameWelcome);
-
-
-
 
 
 
@@ -20,6 +61,8 @@ if(username == null){
     document.getElementById("allActivities").style.display = "none";
     document.getElementById("pleaseEnter").style.display = "inline";
 }
+
+
 
 
 

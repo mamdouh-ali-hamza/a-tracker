@@ -7,51 +7,61 @@
 </head>
 
 <body>
-    <div id="hide">
-        <div id="nav">
-            <div id="welcomDashboard">
-            </div>
-            <div id="pleaseEnter">
-                <p>Please Enter your Username in Home page</p>
-            </div>
-            
-            <h1>A-Tracker</h1>
-            <div id="navbar">
-                <a href="/add" id="addNav">Add Activity</a>     
-                <a href="/activities" id="allNav">All Activities</a>
-                <a href="/dashboard" id="dashboardNav">Dashboard</a>
-                <a href="/">Home</a>
-                <a href="#" id="openPopupBtn">About</a>
-            </div>
+    <div id="nav">
+        <div id="welcomDashboard">
         </div>
-
-        <div class="allContainer" id="allActivities">
-            <div class="container">
-            
-                <!-- <div class="group">$$NO_DATA_MESSAGE$$</div> -->
-    
-                <div class="group table-container">
-    
-                    <!-- <label for="usernameGet">Activities by</label>
-                    <input type="text" name="usernameGet" id="usernameGet" value="" readonly> -->
-    
-                    <table>
-                        <thead>
-                            <tr>
-                                $$TABLE_HEAD$$
-                                <!-- <th>Name</th><th>Category</th><th>Date</th><th>Duration</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            $$DATA$$
-                        </tbody>
-                    </table>
-    
-                </div>
-                
-            </div>
+        <div id="pleaseEnter">
+            <p>Please Enter your Username in Home page</p>
+        </div>
+        
+        <h1>A-Tracker</h1>
+        <div id="navbar">
+            <a href="/add" id="addNav">Add Activity</a>     
+            <a href="/activities" id="allNav">All Activities</a>
+            <a href="/dashboard" id="dashboardNav">Dashboard</a>
+            <a href="/">Home</a>
+            <a href="#" id="openPopupBtn">About</a>
         </div>
     </div>
+
+    
+
+    <div class="allContainer" id="allActivities">
+        <div class="container">
+            <div id="delete">
+                <form action="/deleteLast" method="post">
+                    <input type="button" value="Delete Last Activity" id="buttonDeleteLast" class="buttonDelete">
+                    <input type="button" value="Back" id="backDeleteLast" class="buttonBack">
+                    <input type="submit" value="CONFIRM" id="confirmDeleteLast" class="buttonConfirm">
+                </form>
+    
+                <form action="/deleteAll" method="post">
+                    <input type="button" value="Delete ALL Activities" id="buttonDeleteAll" class="buttonDelete">
+                    <input type="button" value="Back" id="backDeleteAll" class="buttonBack">
+                    <input type="submit" value="CONFIRM" id="confirmDeleteAll" class="buttonConfirm">
+                </form>
+            </div>
+            
+
+            <div class="group table-container" id="table-container">
+
+                <table>
+                    <thead id="tableHeader">
+                        <tr>
+                            $$TABLE_HEAD$$
+                            <!-- <th>Name</th><th>Category</th><th>Date</th><th>Duration</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $$DATA$$
+                    </tbody>
+                </table>
+
+            </div>
+            
+        </div>
+    </div>
+    
 
 
     <!-- popup window to addd activities -->

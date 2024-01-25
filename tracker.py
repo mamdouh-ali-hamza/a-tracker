@@ -81,6 +81,29 @@ def get_data():
     data = content.split("\n")
     return data
 
+# delete last line in file
+def delete_last_line():
+    # Read all lines from the file
+    lines = get_data()
+
+    # Remove the last line
+    modified_lines = lines[:-1]
+
+    # Write the modified lines back to the file
+    with open("data.txt", 'w') as file:
+        file.write("\n".join(modified_lines))
+
+
+# delelte all lines in file
+def delete_all_lines():
+    # Create an empty list to represent an empty file
+    modified_lines = []
+
+    # Write the modified lines (empty list) back to the file
+    with open("data.txt", 'w') as file:
+        file.write("\n".join(modified_lines))
+
+
 
 
 # function to calculate the activity duration for every day: recieve object of class Activity, the dictionary, category, duration of activity and return updated dictionary
@@ -143,46 +166,46 @@ def home():
 
 
 # ############################################################################################
-@app.route("/registerRedirected", methods=['POST'])
-def register_redirected():
-    users = get_users()
+# @app.route("/registerRedirected", methods=['POST'])
+# def register_redirected():
+#     users = get_users()
 
-    name = flask.request.form['register-name']
-    username = flask.request.form['register-username']
-    password = flask.request.form['register-password']
+#     name = flask.request.form['register-name']
+#     username = flask.request.form['register-username']
+#     password = flask.request.form['register-password']
     
     
 
-    for user in users:
-        if str(username).strip() == user[1].strip():
-            flash_message = "Username already exists. Please choose a different username."
-            return flask.redirect(flask.url_for('home', flash_message=flash_message))
-        else:
-            add_user(str(name) + "," + str(username) + "," + str(password))
-            flash_message = "User registered successfully!"
-            return flask.redirect(flask.url_for('home', flash_message=flash_message))
+#     for user in users:
+#         if str(username).strip() == user[1].strip():
+#             flash_message = "Username already exists. Please choose a different username."
+#             return flask.redirect(flask.url_for('home', flash_message=flash_message))
+#         else:
+#             add_user(str(name) + "," + str(username) + "," + str(password))
+#             flash_message = "User registered successfully!"
+#             return flask.redirect(flask.url_for('home', flash_message=flash_message))
     
     
 
 
     
-@app.route("/loginRedirected", methods=['POST'])
-def login_redirected():
-    users = get_users()
+# @app.route("/loginRedirected", methods=['POST'])
+# def login_redirected():
+#     users = get_users()
 
-    username = flask.request.form['login-username']
-    password = flask.request.form['login-password']
+#     username = flask.request.form['login-username']
+#     password = flask.request.form['login-password']
 
-    for user in users:
-        if str(username).strip() == user[1].strip():
-            if str(password).strip() == user[2].strip():
-                flash_message = "login successfully!"
-                return flask.redirect(flask.url_for('home', flash_message=flash_message))
-            else:
-                flash_message = "wrong password"
-                return flask.redirect(flask.url_for('home', flash_message=flash_message))
-        flash_message = "wrong username"
-        return flask.redirect(flask.url_for('home', flash_message=flash_message))
+#     for user in users:
+#         if str(username).strip() == user[1].strip():
+#             if str(password).strip() == user[2].strip():
+#                 flash_message = "login successfully!"
+#                 return flask.redirect(flask.url_for('home', flash_message=flash_message))
+#             else:
+#                 flash_message = "wrong password"
+#                 return flask.redirect(flask.url_for('home', flash_message=flash_message))
+#         flash_message = "wrong username"
+#         return flask.redirect(flask.url_for('home', flash_message=flash_message))
     
 
 
@@ -219,7 +242,7 @@ def add_redirected():
         add_data_first(new_data)
     else:
         add_data(new_data)
-    return flask.redirect(flask.url_for('activities'))
+    return flask.redirect(flask.url_for('add'))
 
 
 
@@ -242,22 +265,31 @@ def activities():
     actual_values = ""
 
     for row in data:
-        actual_values += "<tr>"
-        col = row.split(",")
+        if row.strip():
+            actual_values += "<tr>"
+            col = row.split(",")
 
-        # # remove username before viewing data in table
-        # col.pop()
+            for td in col:
+                actual_values += "<td>" + td + "</td>"
 
-        
-
-        for td in col:
-            actual_values += "<td>" + td + "</td>"
-
-        actual_values += "</tr>"
+            actual_values += "</tr>"
 
     html_page = html_page.replace("$$DATA$$", actual_values).replace("$$TABLE_HEAD$$", table_head)
     return html_page
 
+
+# delete last activity in the table and redirect to activities page
+@app.route("/deleteLast", methods=['POST'])
+def delete_last():
+    delete_last_line()
+    return flask.redirect(flask.url_for('activities'))
+
+
+## delete ALL activities in the table and redirect to activities page
+@app.route("/deleteAll", methods=['POST'])
+def delete_all():
+    delete_all_lines()
+    return flask.redirect(flask.url_for('activities'))
 
 
 ## The dashboard page
