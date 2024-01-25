@@ -3,11 +3,7 @@ body {
     background-color: #363636;
     margin: 0;
     padding: 0 1em;
-    /* display: flex; */
-    /* justify-content: center; */
     align-items: center;
-    /* height: 100vh; */
-    
 }
 
 .allContainer{
@@ -15,35 +11,24 @@ body {
     margin-top: 0.5em;
     justify-content: center;
     align-items: center;
-    /* margin: auto; */
-    /* width: 50%;
-    height: 80%; */
-    
 }
-
-
 
 .container {
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* width: 200px; */
     text-align: center;
     box-shadow: 10px rgba(0, 0, 0, 0.1);
-    /* width: 100%; */
-    
 }
 
 
 
 .group {
-    
     background-color: #fff;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* margin-bottom: 1em; */
     align-items: center;
     text-align: center;
 }
@@ -57,8 +42,6 @@ body {
     justify-content: space-between;
     align-items: center;
     border-radius: 8px;
-
-    
 }
 
 #navbar {
@@ -90,14 +73,11 @@ body {
 table, th, td,tbody, thead {
     border: 3px solid rgb(225, 225, 225);
     border-collapse: collapse;
-    /* margin-top: 10px; */
-    
 }
 
 
 
 th{
-    /* color: #ffffff; */
     background-color: #4f9fb1;
 }
 
@@ -108,7 +88,7 @@ tr:hover {
 
 
 .table-container{
-    height: 75vh;    /* max-height: 680px;  */
+    height: 75vh;    
     overflow-y: auto;
 }
 
@@ -131,10 +111,7 @@ tr:hover {
 
 
 input {
-    /* width: 100%; */
     padding: 5px;
-    /* margin-top: 6px;
-    margin-bottom: 12px; */
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -142,7 +119,6 @@ input {
 
 .buttonBack{
     background-color: #457da0;
-    /* width: 150px; */
     font-size: 15px;
     text-align: center;
 }
@@ -153,7 +129,6 @@ input {
 
 .buttonDelete, .buttonConfirm{
     background-color: #ac5353;
-    /* width: 150px; */
     font-size: 15px;
     text-align: center;
 }
@@ -172,7 +147,7 @@ input {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999; /* Set z-index lower than the popup to ensure it's below the popup */
+    z-index: 999; 
 }
 
 .popup {
@@ -203,4 +178,9 @@ input {
 #closePopupBtn {
     background-color: crimson;
     width: 30px;
+}
+
+#popupWindow {
+    width: 400px;
+    height: 300px;
 }

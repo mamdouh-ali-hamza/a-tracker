@@ -36,23 +36,6 @@ def get_html(page_name):
     return content
 
 
-# 
-def get_users():
-    users_file = open("users.txt")     
-    content = users_file.read()
-    users_file.close()
-    data = content.split("\n")
-    return data
-
-
-# 
-def add_user(new_user):
-    usersdb = open("users.txt", "a")     
-    usersdb.write("\n")
-    usersdb.write(new_user)
-    usersdb.close()
-
-
 # function to create the file if not exist
 def create_data():
     if not os.path.exists("data.txt"):
@@ -104,8 +87,6 @@ def delete_all_lines():
         file.write("\n".join(modified_lines))
 
 
-
-
 # function to calculate the activity duration for every day: recieve object of class Activity, the dictionary, category, duration of activity and return updated dictionary
 def weekday_activity_duration(activity_obj_day, weekday_dict_duration, category, duration):
     if activity_obj_day.get_weekday_name() == 'Monday':
@@ -127,93 +108,12 @@ def weekday_activity_duration(activity_obj_day, weekday_dict_duration, category,
 
 
 
-
-# #
-# def find_username():
-#     input_string = get_html("add")
-#     target_word = "Welcome, "
-#     end_character = "</h3>"
-
-#     # Find the index of the target word
-#     index_of_word = input_string.find(target_word)
-#     if index_of_word != -1:
-#         # Move to the end of the target word
-#         start_index = index_of_word + len(target_word)
-
-#         # Find the index of the end character starting from the end of the target word
-#         end_index = input_string.find(end_character, start_index)
-
-#         if end_index != -1:
-#             # Extract the desired substring
-#             result = input_string[start_index:end_index]
-#             return result
-#         else:
-#             # End character not found, return the substring from the target word to the end of the string
-#             result = input_string[start_index:]
-#             return result
-#     else:
-#         # Target word not found in the string
-#         return None
-
-
-
-
-# The home/login page
+# The home page
 @app.route("/")
 def home():
     create_data()
     return get_html("index")
 
-
-# ############################################################################################
-# @app.route("/registerRedirected", methods=['POST'])
-# def register_redirected():
-#     users = get_users()
-
-#     name = flask.request.form['register-name']
-#     username = flask.request.form['register-username']
-#     password = flask.request.form['register-password']
-    
-    
-
-#     for user in users:
-#         if str(username).strip() == user[1].strip():
-#             flash_message = "Username already exists. Please choose a different username."
-#             return flask.redirect(flask.url_for('home', flash_message=flash_message))
-#         else:
-#             add_user(str(name) + "," + str(username) + "," + str(password))
-#             flash_message = "User registered successfully!"
-#             return flask.redirect(flask.url_for('home', flash_message=flash_message))
-    
-    
-
-
-    
-# @app.route("/loginRedirected", methods=['POST'])
-# def login_redirected():
-#     users = get_users()
-
-#     username = flask.request.form['login-username']
-#     password = flask.request.form['login-password']
-
-#     for user in users:
-#         if str(username).strip() == user[1].strip():
-#             if str(password).strip() == user[2].strip():
-#                 flash_message = "login successfully!"
-#                 return flask.redirect(flask.url_for('home', flash_message=flash_message))
-#             else:
-#                 flash_message = "wrong password"
-#                 return flask.redirect(flask.url_for('home', flash_message=flash_message))
-#         flash_message = "wrong username"
-#         return flask.redirect(flask.url_for('home', flash_message=flash_message))
-    
-
-
-    
-# @app.route('/homeFlash')
-# def home_flash():
-#     flash_message = flask.request.args.get('flash_message')
-#     return f'<p>{flash_message}</p>' if flash_message else 'Welcome to the home page!'
 
 
 # page to add new activity
@@ -229,10 +129,10 @@ def add():
 def add_redirected():
     data = get_data()
     
-    name = flask.request.form['name']                     #args.get("name")
-    category = flask.request.form['category']             #args.get("category")
-    date = flask.request.form['date']                     #args.get("date")
-    duration = flask.request.form['duration']             #args.get("duration")
+    name = flask.request.form['name']                     
+    category = flask.request.form['category']             
+    date = flask.request.form['date']                     
+    duration = flask.request.form['duration']          
 
 
     activity_obj_add = Activity(name, category, date, duration)

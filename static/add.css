@@ -3,8 +3,6 @@ body {
     background-color: #363636;
     margin: 0;
     padding: 0 1em;
-    /* display: flex;
-    justify-content: center; */
     align-items: center;
     height: 100vh;
 }
@@ -45,16 +43,9 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* .group input{
-    display: inline-block;
-} */
 
-/* form{
-    padding: 10px;
-} */
 
 input {
-    /* width: 100%; */
     padding: 10px;
     margin-top: 6px;
     margin-bottom: 12px;
@@ -114,20 +105,6 @@ button:hover {
 
 
 
-#notification {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-
-
 
 .overlay {
     display: none;
@@ -168,4 +145,9 @@ button:hover {
 #closePopupBtn {
     background-color: crimson;
     width: 30px;
+}
+
+#popupWindow {
+    width: 400px;
+    height: 300px;
 }

@@ -1,14 +1,12 @@
+const welcomDashboard = document.getElementById("welcomDashboard");
+const usernameWelcome = document.createElement("h3");
+
+
+
 document.getElementById("dateField").valueAsDate = new Date();
 
-
-const welcomDashboard = document.getElementById("welcomDashboard");
-
-const usernameWelcome = document.createElement("h3");
 usernameWelcome.innerText = "Welcome, " + localStorage.getItem("username");
 welcomDashboard.appendChild(usernameWelcome);
-
-
-
 
 
 let username = localStorage.getItem("username");
@@ -22,13 +20,6 @@ if(username == null){
     document.getElementById("allAdd").style.display = "none";
     document.getElementById("pleaseEnter").style.display = "inline";
 }
-
-
-
-
-// const usernameField = document.getElementById("usernameField");
-
-// usernameField.value = username;
 
 
 

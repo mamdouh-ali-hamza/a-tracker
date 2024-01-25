@@ -9,11 +9,14 @@ const buttonDeleteAll = document.getElementById("buttonDeleteAll");
 const backDeleteAll = document.getElementById("backDeleteAll");
 const confirmDeleteAll = document.getElementById("confirmDeleteAll");
 
+
+// buttons not visible by default
 backDeleteLast.style.display = "none";
 confirmDeleteLast.style.display = "none";
 backDeleteAll.style.display = "none";
 confirmDeleteAll.style.display = "none";
 
+// change buttons visible or not
 buttonDeleteLast.addEventListener("click", function(){
     buttonDeleteLast.style.display = "none";
     backDeleteLast.style.display = "inline";
@@ -36,10 +39,7 @@ backDeleteAll.addEventListener("click", function(){
     buttonDeleteAll.style.display = "inline";
 });
 
-
-
-
-// document.getElementById('table-container').scrollTop = 100;
+// make the table scrolled down by default
 let scrollContainer = document.getElementById('table-container');
 scrollContainer.scrollTop = scrollContainer.scrollHeight;
 
@@ -61,11 +61,6 @@ if(username == null){
     document.getElementById("allActivities").style.display = "none";
     document.getElementById("pleaseEnter").style.display = "inline";
 }
-
-
-
-
-
 
 
 
