@@ -1,5 +1,7 @@
 running,Sport,2024-01-10,20
 swimming,Sport,2024-01-10,10
+running,Sport,2024-01-10,20
+swimming,Sport,2024-01-10,10
 css,Study,2024-01-23,40
 js,Study,2024-01-25,100
 project,Work,2024-01-25,40
@@ -7,10 +9,28 @@ video games,Chill,2024-01-25,30
 chatting,Social,2024-01-25,20
 yoga,Spiritual,2024-01-25,15
 reading,Creative,2024-01-25,10
+chatting,Social,2024-01-25,20
+yoga,Spiritual,2024-01-25,15
+reading,Creative,2024-01-25,10
 project,Work,2024-01-25,70
 chatting,Social,2024-01-25,50
 trip,Chill,2024-01-19,120
 searching,Other,2024-01-25,40
+movie,Chill,2024-01-21,90
+running,Sport,2024-01-24,30
+singing,Creative,2024-01-23,20
+watching,Spiritual,2024-01-22,20
+grocieris,Other,2024-01-22,60
+coding,Work,2024-01-15,50
+cleaning,Other,2024-01-15,10
+push ups,Sport,2024-01-16,30
+coding,Work,2024-01-15,50
+cleaning,Other,2024-01-15,10
+push ups,Sport,2024-01-16,30
+python,Study,2024-01-17,90
+chatting,Social,2024-01-18,25
+painting,Creative,2024-01-20,40
+praying,Spiritual,2024-01-20,35
 movie,Chill,2024-01-21,90
 running,Sport,2024-01-24,30
 singing,Creative,2024-01-23,20
