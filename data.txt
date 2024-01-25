@@ -1,1 +1,10 @@
-dgdg,Work,2024-01-25,10
+running,Sport,2024-01-10,20
+swimming,Sport,2024-01-10,10
+css,Study,2024-01-23,40
+js,Study,2024-01-25,100
+project,Work,2024-01-25,40
+video games,Chill,2024-01-25,30
+chatting,Social,2024-01-25,20
+yoga,Spiritual,2024-01-25,15
+reading,Creative,2024-01-25,10
+project,Work,2024-01-25,70
