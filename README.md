@@ -9,9 +9,12 @@ Track what activities you do daily and add information like name, category, date
   Chart drawing library graphs the user data
 
 ## Prerequisites
-Did you add any additional modules that someone needs to install (for instance anything in Python that you `pip install-ed`)? 
 Flask: pip install Flask
-Charts.css: npm install charts.css (link: chartscss.org)
+Charts.css:
+The files needed already included in /static/dis/ . Charts.css latest release can be downloaded from https://github.com/ChartsCSS/charts.css/releases and copy the dist/charts.min.css file to the project then load the CSS file in the HTML documentusing <link> tag and place it inside the document <head>.
+
+## To RUN Project
+Run this command: FLASK_APP=tracker.py flask run
 
 ## Project Checklist
 - [x] It is available on GitHub.
