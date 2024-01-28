@@ -2,9 +2,6 @@ import os
 import datetime
 import flask
 
-
-
-
 app = flask.Flask("myTracker")
 
 
@@ -15,17 +12,15 @@ class Activity:
         self.category = category
         self.date = date
         self.duration = duration
-
+    # add line in data file for the activity
     def make_activity(self):
         activity = str(self.name) + "," + str(self.category) + "," + str(self.date) + "," + str(self.duration)
         return activity
-    
+    # get the name of the week day from the date
     def get_weekday_name(self):
         date_activity = datetime.datetime.strptime(self.date, '%Y-%m-%d')
         day_activity = date_activity.strftime('%A')
         return day_activity
-
-    
 
 
 # function to return the name of html page requested
@@ -50,11 +45,13 @@ def add_data(new_data):
     db.write(new_data)
     db.close()
 
+
 # add the first data in newly created file
 def add_data_first(new_data):
     db = open("data.txt", "a")
     db.write(new_data)
     db.close()
+
 
 # read user data
 def get_data():
@@ -64,14 +61,13 @@ def get_data():
     data = content.split("\n")
     return data
 
+
 # delete last line in file
 def delete_last_line():
     # Read all lines from the file
     lines = get_data()
-
     # Remove the last line
     modified_lines = lines[:-1]
-
     # Write the modified lines back to the file
     with open("data.txt", 'w') as file:
         file.write("\n".join(modified_lines))
@@ -81,7 +77,6 @@ def delete_last_line():
 def delete_all_lines():
     # Create an empty list to represent an empty file
     modified_lines = []
-
     # Write the modified lines (empty list) back to the file
     with open("data.txt", 'w') as file:
         file.write("\n".join(modified_lines))
@@ -103,9 +98,7 @@ def weekday_activity_duration(activity_obj_day, weekday_dict_duration, category,
         weekday_dict_duration['Saturday'][category] += duration
     elif activity_obj_day.get_weekday_name() == 'Sunday':
         weekday_dict_duration['Sunday'][category] += duration
-
     return weekday_dict_duration
-
 
 
 # The home page
@@ -115,7 +108,6 @@ def home():
     return get_html("index")
 
 
-
 # page to add new activity
 @app.route("/add")
 def add():
@@ -123,21 +115,19 @@ def add():
     return html_page
 
 
-
-## page to redirect from add activity to all activities pages  ("Post/Redirect/Get": solving the problem when refreshing the page the form auto submit last data)
+# page to redirect from add activity to all activities pages  ("Post/Redirect/Get": solving the problem when refreshing the page the form auto submit last data)
 @app.route("/addRedirected", methods=['POST'])
 def add_redirected():
-    data = get_data()
-    
+    data = get_data()  
     name = flask.request.form['name']                     
     category = flask.request.form['category']             
     date = flask.request.form['date']                     
     duration = flask.request.form['duration']          
 
-
+    # creation object of Activity class and calling a methond of the class to concat the form inputs to make the line (activity)
     activity_obj_add = Activity(name, category, date, duration)
     new_data = activity_obj_add.make_activity()
-    
+    # if it is the first activity line in the file (for not producing empty line in the beginning)
     if len(data) == 1 and data[0] == '':
         add_data_first(new_data)
     else:
@@ -145,35 +135,32 @@ def add_redirected():
     return flask.redirect(flask.url_for('add'))
 
 
-
-
-
-## page to view table of all activities
+# page to view table of all activities
 @app.route("/activities")
 def activities():
     html_page = get_html("activities")
     data = get_data()
-    
-    # the table in the the right half of the dashboard page
+    # the table head
     table_head = "<th>Name</th><th>Category</th><th>Date</th><th>Duration</th>"
     
-
+    # if the data file is empty, just add the table head and empty tags for the body
     if len(data) == 1 and data[0] == '':
         return html_page.replace("$$TABLE_HEAD$$", table_head).replace("$$DATA$$", "<tr><td></td><td></td><td></td><td></td></tr>")
-
-
+    # intialize the variable holding the data of the body of the table
     actual_values = ""
-
+    # data is a list of lines of the data file, spliting the line to get every data cell and adding the tags for every row and column of the table
     for row in data:
         if row.strip():
+            # the opending row tag
             actual_values += "<tr>"
+            # spliting the line to columns
             col = row.split(",")
-
+            # adding every cell for the table body
             for td in col:
                 actual_values += "<td>" + td + "</td>"
-
+            # the closing row tag opened before
             actual_values += "</tr>"
-
+    # replacing table head and body data which been held in the variables to the corresponding words in the html file
     html_page = html_page.replace("$$DATA$$", actual_values).replace("$$TABLE_HEAD$$", table_head)
     return html_page
 
@@ -185,14 +172,14 @@ def delete_last():
     return flask.redirect(flask.url_for('activities'))
 
 
-## delete ALL activities in the table and redirect to activities page
+# delete ALL activities in the table and redirect to activities page
 @app.route("/deleteAll", methods=['POST'])
 def delete_all():
     delete_all_lines()
     return flask.redirect(flask.url_for('activities'))
 
 
-## The dashboard page
+# The dashboard page
 @app.route("/dashboard")
 def dashboard():
     html_page = get_html("dashboard")
@@ -244,7 +231,6 @@ def dashboard():
                         .replace('$$Monday-Creative$$', "0")
                         .replace('$$Monday-Chill$$', "0")
                         .replace('$$Monday-Other$$', "0")
-
                         .replace('$$Tuesday-Work$$', "0")
                         .replace('$$Tuesday-Study$$', "0")
                         .replace('$$Tuesday-Sport$$', "0")
@@ -253,7 +239,6 @@ def dashboard():
                         .replace('$$Tuesday-Creative$$', "0")
                         .replace('$$Tuesday-Chill$$', "0")
                         .replace('$$Tuesday-Other$$', "0")
-
                         .replace('$$Wednesday-Work$$', "0")
                         .replace('$$Wednesday-Study$$', "0")
                         .replace('$$Wednesday-Sport$$', "0")
@@ -262,7 +247,6 @@ def dashboard():
                         .replace('$$Wednesday-Creative$$', "0")
                         .replace('$$Wednesday-Chill$$', "0")
                         .replace('$$Wednesday-Other$$', "0")
-
                         .replace('$$Thursday-Work$$', "0")
                         .replace('$$Thursday-Study$$', "0")
                         .replace('$$Thursday-Sport$$', "0")
@@ -271,7 +255,6 @@ def dashboard():
                         .replace('$$Thursday-Creative$$', "0")
                         .replace('$$Thursday-Chill$$', "0")
                         .replace('$$Thursday-Other$$', "0")
-
                         .replace('$$Friday-Work$$', "0")
                         .replace('$$Friday-Study$$', "0")
                         .replace('$$Friday-Sport$$', "0")
@@ -280,7 +263,6 @@ def dashboard():
                         .replace('$$Friday-Creative$$', "0")
                         .replace('$$Friday-Chill$$', "0")
                         .replace('$$Friday-Other$$', "0")
-
                         .replace('$$Saturday-Work$$', "0")
                         .replace('$$Saturday-Study$$', "0")
                         .replace('$$Saturday-Sport$$', "0")
@@ -289,7 +271,6 @@ def dashboard():
                         .replace('$$Saturday-Creative$$', "0")
                         .replace('$$Saturday-Chill$$', "0")
                         .replace('$$Saturday-Other$$', "0")
-
                         .replace('$$Sunday-Work$$', "0")
                         .replace('$$Sunday-Study$$', "0")
                         .replace('$$Sunday-Sport$$', "0")
@@ -330,37 +311,29 @@ def dashboard():
     for row in data:
         #spliting the lines to 4 columns
         col = row.split(",")
-
         # for the column and pie charts checking for the same day of today
         if col[2] == str(today_date):
             if col[1] == 'Work':
                 activities_duraion[0] += int(col[3])
                 activities_frequency [0] += 1
-
             elif col[1] == 'Study':
                 activities_duraion[1] += int(col[3])
                 activities_frequency [1] += 1
-
             elif col[1] == 'Sport':
                 activities_duraion[2] += int(col[3])
                 activities_frequency [2] += 1
-
             elif col[1] == 'Social':
                 activities_duraion[3] += int(col[3])
                 activities_frequency [3] += 1
-
             elif col[1] == 'Spiritual':
                 activities_duraion[4] += int(col[3])
                 activities_frequency [4] += 1
-
             elif col[1] == 'Creative':
                 activities_duraion[5] += int(col[3])
                 activities_frequency [5] += 1
-
             elif col[1] == 'Chill':
                 activities_duraion[6] += int(col[3])
                 activities_frequency [6] += 1
-
             elif col[1] == 'Other':
                 activities_duraion[7] += int(col[3])
                 activities_frequency [7] += 1
@@ -371,25 +344,18 @@ def dashboard():
         if col[2] in week_dates_str:
             if col[1] == 'Work':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 0, int(col[3]))
-
             elif col[1] == 'Study':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 1, int(col[3]))
-
             elif col[1] == 'Sport':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 2, int(col[3]))
-
             elif col[1] == 'Social':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 3, int(col[3]))
-
             elif col[1] == 'Spiritual':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 4, int(col[3]))
-
             elif col[1] == 'Creative':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 5, int(col[3]))
-
             elif col[1] == 'Chill':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 6, int(col[3]))
-
             elif col[1] == 'Other':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 7, int(col[3]))
 
@@ -399,29 +365,20 @@ def dashboard():
         if str(col[2]).split('-')[1] == str(today_date).split('-')[1]:
             if col[1] == 'Work':
                 month_average[0] += int(col[3])
-
             elif col[1] == 'Study':
                 month_average[1] += int(col[3])
-
             elif col[1] == 'Sport':
                 month_average[2] += int(col[3])
-
             elif col[1] == 'Social':
                 month_average[3] += int(col[3])
-
             elif col[1] == 'Spiritual':
                 month_average[4] += int(col[3])
-
             elif col[1] == 'Creative':
                 month_average[5] += int(col[3])
-
             elif col[1] == 'Chill':
                 month_average[6] += int(col[3])
-
             elif col[1] == 'Other':
-                month_average[7] += int(col[3])
-
-    
+                month_average[7] += int(col[3])  
     
     # column chart height depending on the 1.2* tallest column
     height_chart = sorted(activities_duraion)[-1] * 1.2
@@ -452,7 +409,6 @@ def dashboard():
     # height of line chart
     max_height_chart_line = max(max(sublist) for sublist in weekday_dict_duration.values())
     html_page = html_page.replace('$$HeightLine$$', str(max_height_chart_line))
-
     html_page = (html_page.replace('$$Monday-Work$$', str(weekday_dict_duration['Monday'][0]))
                         .replace('$$Monday-Study$$', str(weekday_dict_duration['Monday'][1]))
                         .replace('$$Monday-Sport$$', str(weekday_dict_duration['Monday'][2]))
@@ -461,7 +417,6 @@ def dashboard():
                         .replace('$$Monday-Creative$$', str(weekday_dict_duration['Monday'][5]))
                         .replace('$$Monday-Chill$$', str(weekday_dict_duration['Monday'][6]))
                         .replace('$$Monday-Other$$', str(weekday_dict_duration['Monday'][7]))
-
                         .replace('$$Tuesday-Work$$', str(weekday_dict_duration['Tuesday'][0]))
                         .replace('$$Tuesday-Study$$', str(weekday_dict_duration['Tuesday'][1]))
                         .replace('$$Tuesday-Sport$$', str(weekday_dict_duration['Tuesday'][2]))
@@ -470,7 +425,6 @@ def dashboard():
                         .replace('$$Tuesday-Creative$$', str(weekday_dict_duration['Tuesday'][5]))
                         .replace('$$Tuesday-Chill$$', str(weekday_dict_duration['Tuesday'][6]))
                         .replace('$$Tuesday-Other$$', str(weekday_dict_duration['Tuesday'][7]))
-
                         .replace('$$Wednesday-Work$$', str(weekday_dict_duration['Wednesday'][0]))
                         .replace('$$Wednesday-Study$$', str(weekday_dict_duration['Wednesday'][1]))
                         .replace('$$Wednesday-Sport$$', str(weekday_dict_duration['Wednesday'][2]))
@@ -479,7 +433,6 @@ def dashboard():
                         .replace('$$Wednesday-Creative$$', str(weekday_dict_duration['Wednesday'][5]))
                         .replace('$$Wednesday-Chill$$', str(weekday_dict_duration['Wednesday'][6]))
                         .replace('$$Wednesday-Other$$', str(weekday_dict_duration['Wednesday'][7]))
-
                         .replace('$$Thursday-Work$$', str(weekday_dict_duration['Thursday'][0]))
                         .replace('$$Thursday-Study$$', str(weekday_dict_duration['Thursday'][1]))
                         .replace('$$Thursday-Sport$$', str(weekday_dict_duration['Thursday'][2]))
@@ -488,7 +441,6 @@ def dashboard():
                         .replace('$$Thursday-Creative$$', str(weekday_dict_duration['Thursday'][5]))
                         .replace('$$Thursday-Chill$$', str(weekday_dict_duration['Thursday'][6]))
                         .replace('$$Thursday-Other$$', str(weekday_dict_duration['Thursday'][7]))
-
                         .replace('$$Friday-Work$$', str(weekday_dict_duration['Friday'][0]))
                         .replace('$$Friday-Study$$', str(weekday_dict_duration['Friday'][1]))
                         .replace('$$Friday-Sport$$', str(weekday_dict_duration['Friday'][2]))
@@ -497,7 +449,6 @@ def dashboard():
                         .replace('$$Friday-Creative$$', str(weekday_dict_duration['Friday'][5]))
                         .replace('$$Friday-Chill$$', str(weekday_dict_duration['Friday'][6]))
                         .replace('$$Friday-Other$$', str(weekday_dict_duration['Friday'][7]))
-
                         .replace('$$Saturday-Work$$', str(weekday_dict_duration['Saturday'][0]))
                         .replace('$$Saturday-Study$$', str(weekday_dict_duration['Saturday'][1]))
                         .replace('$$Saturday-Sport$$', str(weekday_dict_duration['Saturday'][2]))
@@ -506,7 +457,6 @@ def dashboard():
                         .replace('$$Saturday-Creative$$', str(weekday_dict_duration['Saturday'][5]))
                         .replace('$$Saturday-Chill$$', str(weekday_dict_duration['Saturday'][6]))
                         .replace('$$Saturday-Other$$', str(weekday_dict_duration['Saturday'][7]))
-
                         .replace('$$Sunday-Work$$', str(weekday_dict_duration['Sunday'][0]))
                         .replace('$$Sunday-Study$$', str(weekday_dict_duration['Sunday'][1]))
                         .replace('$$Sunday-Sport$$', str(weekday_dict_duration['Sunday'][2]))
@@ -528,18 +478,11 @@ def dashboard():
                  .replace('$$CREATIVEMONTH$$', str(round(month_average[5] / days_passed, 2)))
                  .replace('$$CHILLMONTH$$', str(round(month_average[6] / days_passed, 2)))
                  .replace('$$OTHERMONTH$$', str(round(month_average[7] / days_passed, 2)))
-                )
-
-    
+                )  
     return html_page
 
 
-
-
-
-
-
-## The selected date dashboard page
+# The selected date dashboard page
 @app.route("/dashboardDateSelected")
 def dashboard_date_selected():
     html_page = get_html("dashboard")
@@ -591,7 +534,6 @@ def dashboard_date_selected():
                         .replace('$$Monday-Creative$$', "0")
                         .replace('$$Monday-Chill$$', "0")
                         .replace('$$Monday-Other$$', "0")
-
                         .replace('$$Tuesday-Work$$', "0")
                         .replace('$$Tuesday-Study$$', "0")
                         .replace('$$Tuesday-Sport$$', "0")
@@ -600,7 +542,6 @@ def dashboard_date_selected():
                         .replace('$$Tuesday-Creative$$', "0")
                         .replace('$$Tuesday-Chill$$', "0")
                         .replace('$$Tuesday-Other$$', "0")
-
                         .replace('$$Wednesday-Work$$', "0")
                         .replace('$$Wednesday-Study$$', "0")
                         .replace('$$Wednesday-Sport$$', "0")
@@ -609,7 +550,6 @@ def dashboard_date_selected():
                         .replace('$$Wednesday-Creative$$', "0")
                         .replace('$$Wednesday-Chill$$', "0")
                         .replace('$$Wednesday-Other$$', "0")
-
                         .replace('$$Thursday-Work$$', "0")
                         .replace('$$Thursday-Study$$', "0")
                         .replace('$$Thursday-Sport$$', "0")
@@ -618,7 +558,6 @@ def dashboard_date_selected():
                         .replace('$$Thursday-Creative$$', "0")
                         .replace('$$Thursday-Chill$$', "0")
                         .replace('$$Thursday-Other$$', "0")
-
                         .replace('$$Friday-Work$$', "0")
                         .replace('$$Friday-Study$$', "0")
                         .replace('$$Friday-Sport$$', "0")
@@ -627,7 +566,6 @@ def dashboard_date_selected():
                         .replace('$$Friday-Creative$$', "0")
                         .replace('$$Friday-Chill$$', "0")
                         .replace('$$Friday-Other$$', "0")
-
                         .replace('$$Saturday-Work$$', "0")
                         .replace('$$Saturday-Study$$', "0")
                         .replace('$$Saturday-Sport$$', "0")
@@ -636,7 +574,6 @@ def dashboard_date_selected():
                         .replace('$$Saturday-Creative$$', "0")
                         .replace('$$Saturday-Chill$$', "0")
                         .replace('$$Saturday-Other$$', "0")
-
                         .replace('$$Sunday-Work$$', "0")
                         .replace('$$Sunday-Study$$', "0")
                         .replace('$$Sunday-Sport$$', "0")
@@ -683,61 +620,45 @@ def dashboard_date_selected():
             if col[1] == 'Work':
                 activities_duraion[0] += int(col[3])
                 activities_frequency [0] += 1
-
             elif col[1] == 'Study':
                 activities_duraion[1] += int(col[3])
                 activities_frequency [1] += 1
-
             elif col[1] == 'Sport':
                 activities_duraion[2] += int(col[3])
                 activities_frequency [2] += 1
-
             elif col[1] == 'Social':
                 activities_duraion[3] += int(col[3])
                 activities_frequency [3] += 1
-
             elif col[1] == 'Spiritual':
                 activities_duraion[4] += int(col[3])
                 activities_frequency [4] += 1
-
             elif col[1] == 'Creative':
                 activities_duraion[5] += int(col[3])
                 activities_frequency [5] += 1
-
             elif col[1] == 'Chill':
                 activities_duraion[6] += int(col[3])
                 activities_frequency [6] += 1
-
             elif col[1] == 'Other':
                 activities_duraion[7] += int(col[3])
                 activities_frequency [7] += 1
-
         # using method weekday_activity_duration of class Activity to return the name of day of week
         activity_obj_day = Activity(col[0], col[1], col[2], col[3])
-
         # for line chart using list of dates of the days in the week of the day selected
         if col[2] in week_dates_str:
             if col[1] == 'Work':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 0, int(col[3]))
-
             elif col[1] == 'Study':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 1, int(col[3]))
-
             elif col[1] == 'Sport':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 2, int(col[3]))
-
             elif col[1] == 'Social':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 3, int(col[3]))
-
             elif col[1] == 'Spiritual':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 4, int(col[3]))
-
             elif col[1] == 'Creative':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 5, int(col[3]))
-
             elif col[1] == 'Chill':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 6, int(col[3]))
-
             elif col[1] == 'Other':
                 weekday_dict_duration = weekday_activity_duration(activity_obj_day, weekday_dict_duration, 7, int(col[3]))
 
@@ -747,25 +668,18 @@ def dashboard_date_selected():
         if str(col[2]).split('-')[1] == str(date_selected).split('-')[1]:
             if col[1] == 'Work':
                 month_average[0] += int(col[3])
-
             elif col[1] == 'Study':
                 month_average[1] += int(col[3])
-
             elif col[1] == 'Sport':
                 month_average[2] += int(col[3])
-
             elif col[1] == 'Social':
                 month_average[3] += int(col[3])
-
             elif col[1] == 'Spiritual':
                 month_average[4] += int(col[3])
-
             elif col[1] == 'Creative':
                 month_average[5] += int(col[3])
-
             elif col[1] == 'Chill':
                 month_average[6] += int(col[3])
-
             elif col[1] == 'Other':
                 month_average[7] += int(col[3])
     
@@ -798,7 +712,6 @@ def dashboard_date_selected():
     # height of line chart
     max_height_chart_line = max(max(sublist) for sublist in weekday_dict_duration.values())
     html_page = html_page.replace('$$HeightLine$$', str(max_height_chart_line))
-
     html_page = (html_page.replace('$$Monday-Work$$', str(weekday_dict_duration['Monday'][0]))
                         .replace('$$Monday-Study$$', str(weekday_dict_duration['Monday'][1]))
                         .replace('$$Monday-Sport$$', str(weekday_dict_duration['Monday'][2]))
@@ -807,7 +720,6 @@ def dashboard_date_selected():
                         .replace('$$Monday-Creative$$', str(weekday_dict_duration['Monday'][5]))
                         .replace('$$Monday-Chill$$', str(weekday_dict_duration['Monday'][6]))
                         .replace('$$Monday-Other$$', str(weekday_dict_duration['Monday'][7]))
-
                         .replace('$$Tuesday-Work$$', str(weekday_dict_duration['Tuesday'][0]))
                         .replace('$$Tuesday-Study$$', str(weekday_dict_duration['Tuesday'][1]))
                         .replace('$$Tuesday-Sport$$', str(weekday_dict_duration['Tuesday'][2]))
@@ -816,7 +728,6 @@ def dashboard_date_selected():
                         .replace('$$Tuesday-Creative$$', str(weekday_dict_duration['Tuesday'][5]))
                         .replace('$$Tuesday-Chill$$', str(weekday_dict_duration['Tuesday'][6]))
                         .replace('$$Tuesday-Other$$', str(weekday_dict_duration['Tuesday'][7]))
-
                         .replace('$$Wednesday-Work$$', str(weekday_dict_duration['Wednesday'][0]))
                         .replace('$$Wednesday-Study$$', str(weekday_dict_duration['Wednesday'][1]))
                         .replace('$$Wednesday-Sport$$', str(weekday_dict_duration['Wednesday'][2]))
@@ -825,7 +736,6 @@ def dashboard_date_selected():
                         .replace('$$Wednesday-Creative$$', str(weekday_dict_duration['Wednesday'][5]))
                         .replace('$$Wednesday-Chill$$', str(weekday_dict_duration['Wednesday'][6]))
                         .replace('$$Wednesday-Other$$', str(weekday_dict_duration['Wednesday'][7]))
-
                         .replace('$$Thursday-Work$$', str(weekday_dict_duration['Thursday'][0]))
                         .replace('$$Thursday-Study$$', str(weekday_dict_duration['Thursday'][1]))
                         .replace('$$Thursday-Sport$$', str(weekday_dict_duration['Thursday'][2]))
@@ -834,7 +744,6 @@ def dashboard_date_selected():
                         .replace('$$Thursday-Creative$$', str(weekday_dict_duration['Thursday'][5]))
                         .replace('$$Thursday-Chill$$', str(weekday_dict_duration['Thursday'][6]))
                         .replace('$$Thursday-Other$$', str(weekday_dict_duration['Thursday'][7]))
-
                         .replace('$$Friday-Work$$', str(weekday_dict_duration['Friday'][0]))
                         .replace('$$Friday-Study$$', str(weekday_dict_duration['Friday'][1]))
                         .replace('$$Friday-Sport$$', str(weekday_dict_duration['Friday'][2]))
@@ -843,7 +752,6 @@ def dashboard_date_selected():
                         .replace('$$Friday-Creative$$', str(weekday_dict_duration['Friday'][5]))
                         .replace('$$Friday-Chill$$', str(weekday_dict_duration['Friday'][6]))
                         .replace('$$Friday-Other$$', str(weekday_dict_duration['Friday'][7]))
-
                         .replace('$$Saturday-Work$$', str(weekday_dict_duration['Saturday'][0]))
                         .replace('$$Saturday-Study$$', str(weekday_dict_duration['Saturday'][1]))
                         .replace('$$Saturday-Sport$$', str(weekday_dict_duration['Saturday'][2]))
@@ -852,7 +760,6 @@ def dashboard_date_selected():
                         .replace('$$Saturday-Creative$$', str(weekday_dict_duration['Saturday'][5]))
                         .replace('$$Saturday-Chill$$', str(weekday_dict_duration['Saturday'][6]))
                         .replace('$$Saturday-Other$$', str(weekday_dict_duration['Saturday'][7]))
-
                         .replace('$$Sunday-Work$$', str(weekday_dict_duration['Sunday'][0]))
                         .replace('$$Sunday-Study$$', str(weekday_dict_duration['Sunday'][1]))
                         .replace('$$Sunday-Sport$$', str(weekday_dict_duration['Sunday'][2]))
@@ -874,8 +781,5 @@ def dashboard_date_selected():
                  .replace('$$CREATIVEMONTH$$', str(round(month_average[5] / days_passed, 2)))
                  .replace('$$CHILLMONTH$$', str(round(month_average[6] / days_passed, 2)))
                  .replace('$$OTHERMONTH$$', str(round(month_average[7] / days_passed, 2)))
-                )
-
-    
+                ) 
     return html_page
-    
