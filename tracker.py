@@ -84,19 +84,20 @@ def delete_all_lines():
 
 # function to calculate the activity duration for every day: recieve object of class Activity, the dictionary, category, duration of activity and return updated dictionary
 def weekday_activity_duration(activity_obj_day, weekday_dict_duration, category, duration):
-    if activity_obj_day.get_weekday_name() == 'Monday':
+    weekday_name = activity_obj_day.get_weekday_name()
+    if weekday_name == 'Monday':
         weekday_dict_duration['Monday'][category] += duration
-    elif activity_obj_day.get_weekday_name() == 'Tuesday':
+    elif weekday_name == 'Tuesday':
         weekday_dict_duration['Tuesday'][category] += duration
-    elif activity_obj_day.get_weekday_name() == 'Wednesday':
+    elif weekday_name == 'Wednesday':
         weekday_dict_duration['Wednesday'][category] += duration
-    elif activity_obj_day.get_weekday_name() == 'Thursday':
+    elif weekday_name == 'Thursday':
         weekday_dict_duration['Thursday'][category] += duration
-    elif activity_obj_day.get_weekday_name() == 'Friday':
+    elif weekday_name == 'Friday':
         weekday_dict_duration['Friday'][category] += duration
-    elif activity_obj_day.get_weekday_name() == 'Saturday':
+    elif weekday_name == 'Saturday':
         weekday_dict_duration['Saturday'][category] += duration
-    elif activity_obj_day.get_weekday_name() == 'Sunday':
+    elif weekday_name == 'Sunday':
         weekday_dict_duration['Sunday'][category] += duration
     return weekday_dict_duration
 
