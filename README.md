@@ -1,4 +1,4 @@
-A-Tracker : Track your Daily Activities
+# A-Tracker : Track your Daily Activities
 ## MY FINAL PROJECT
 Track what activities you do daily and add information like name, category, date, and duration of activities in minutes. Then visulaize your activities in charts to get benifit from the dashboard to track your activities.
 
@@ -9,9 +9,9 @@ Track what activities you do daily and add information like name, category, date
   Chart drawing library graphs the user data
 
 ## Prerequisites
-Flask: pip install Flask
-Charts.css:
-The files needed already included in /static/dis/ . Charts.css latest release can be downloaded from https://github.com/ChartsCSS/charts.css/releases and copy the dist/charts.min.css file to the project then load the CSS file in the HTML documentusing <link> tag and place it inside the document <head>.
+Flask:  pip install Flask  
+Charts.css:  
+The files needed already included in /static/dis/ . Charts.css latest release can be downloaded from https://github.com/ChartsCSS/charts.css/releases and copy the dist/charts.min.css file to the project then load the CSS file in the HTML document using link tag and place it inside the document in head tag.
 
 ## To RUN Project
 Run this command: FLASK_APP=tracker.py flask run
