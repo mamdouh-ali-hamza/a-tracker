@@ -90,7 +90,7 @@ buttonExit.addEventListener("click", exitUser);
 document.getElementById("pleaseEnter").style.display = "none";
 
 if(username == null){
-    document.getElementById("welcomDashboard").style.display = "none";
+    document.getElementById("welcome-dashboard").style.display = "none";
     document.getElementById("addNav").style.display = "none";
     document.getElementById("allNav").style.display = "none";
     document.getElementById("dashboardNav").style.display = "none";

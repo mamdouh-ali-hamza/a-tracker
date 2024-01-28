@@ -1,4 +1,4 @@
-const welcomDashboard = document.getElementById("welcomDashboard");
+const welcomeDashboard = document.getElementById("welcome-dashboard");
 const usernameWelcome = document.createElement("h3");
 
 
@@ -46,7 +46,7 @@ scrollContainer.scrollTop = scrollContainer.scrollHeight;
 
 
 usernameWelcome.innerText = "Welcome, " + localStorage.getItem("username");
-welcomDashboard.appendChild(usernameWelcome);
+welcomeDashboard.appendChild(usernameWelcome);
 
 
 
@@ -54,7 +54,7 @@ let username = localStorage.getItem("username");
 document.getElementById("pleaseEnter").style.display = "none";
 
 if(username == null){
-    document.getElementById("welcomDashboard").style.display = "none";
+    document.getElementById("welcome-dashboard").style.display = "none";
     document.getElementById("addNav").style.display = "none";
     document.getElementById("allNav").style.display = "none";
     document.getElementById("dashboardNav").style.display = "none";

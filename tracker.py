@@ -113,7 +113,7 @@ def add():
 
 
 # page to redirect from add activity to all activities pages  ("Post/Redirect/Get": solving the problem when refreshing the page the form auto submit last data)
-@app.route("/addRedirected", methods=['POST'])
+@app.route("/add-redirected", methods=['POST'])
 def add_redirected():
     data = get_data()  
     name = flask.request.form['name']                     
@@ -163,14 +163,14 @@ def activities():
 
 
 # delete last activity in the table and redirect to activities page
-@app.route("/deleteLast", methods=['POST'])
+@app.route("/delete-last", methods=['POST'])
 def delete_last():
     delete_last_line()
     return flask.redirect(flask.url_for('activities'))
 
 
 # delete ALL activities in the table and redirect to activities page
-@app.route("/deleteAll", methods=['POST'])
+@app.route("/delete-all", methods=['POST'])
 def delete_all():
     delete_all_lines()
     return flask.redirect(flask.url_for('activities'))
@@ -480,7 +480,7 @@ def dashboard():
 
 
 # The selected date dashboard page
-@app.route("/dashboardDateSelected")
+@app.route("/dashboard-date-selected")
 def dashboard_date_selected():
     html_page = get_html("dashboard")
     data = get_data()
