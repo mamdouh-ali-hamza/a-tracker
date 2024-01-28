@@ -25,39 +25,35 @@ class Activity:
 
 # function to return the name of html page requested
 def get_html(page_name):
-    html_file = open(page_name + ".html")
-    content = html_file.read()
-    html_file.close()
+    with open(f"{page_name}.html", "r") as html_file:
+        content = html_file.read()
     return content
 
 
 # function to create the file if not exist
 def create_data():
     if not os.path.exists("data.txt"):
-        db = open("data.txt", "a")     #("static/db/" + str(find_username()) + ".txt", "a")
-        db.close()
+        with open("data.txt", "a") as data_file:
+            pass
 
 
 # add data to text file seperated by new line
 def add_data(new_data):
-    db = open("data.txt", "a")     #("static/db/" + str(find_username()) + ".txt", "a")
-    db.write("\n")
-    db.write(new_data)
-    db.close()
+    with open("data.txt", "a") as data_file:
+        data_file.write("\n")
+        data_file.write(new_data)
 
 
 # add the first data in newly created file
 def add_data_first(new_data):
-    db = open("data.txt", "a")
-    db.write(new_data)
-    db.close()
+    with open("data.txt", "a") as data_file:
+        data_file.write(new_data)
 
 
 # read user data
 def get_data():
-    data_file = open("data.txt")     #("static/db/" + str(find_username()) + ".txt")
-    content = data_file.read()
-    data_file.close()
+    with open("data.txt", "r") as data_file:
+        content = data_file.read()
     data = content.split("\n")
     return data
 
