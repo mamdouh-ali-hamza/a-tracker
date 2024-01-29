@@ -1,89 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Add activity</title>
-    <link rel="stylesheet" href="/static/add.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="/static/add.css" />
+  </head>
+  <body>
     <div id="nav">
-        <div id="welcome-dashboard">
-        </div>
-        <div id="pleaseEnter">
-            <p>Please Enter your username</p>
-        </div>
-        
-        <h1>A-Tracker</h1>
-        <div id="navbar">
-            <a href="/add" id="addNav">Add Activity</a>     
-            <a href="/activities" id="allNav">All Activities</a>
-            <a href="/dashboard" id="dashboardNav">Dashboard</a>
-            <a href="/">Home</a>
-            <a href="#" id="openPopupBtn">About</a>
-        </div>
-    </div>
+      <div id="welcome-dashboard"></div>
+      <div id="pleaseEnter">
+        <p>Please Enter your username</p>
+      </div>
 
+      <h1>A-Tracker</h1>
+      <div id="navbar">
+        <a href="/add" id="addNav">Add Activity</a>
+        <a href="/activities" id="allNav">All Activities</a>
+        <a href="/dashboard" id="dashboardNav">Dashboard</a>
+        <a href="/">Home</a>
+        <a href="#" id="openPopupBtn">About</a>
+      </div>
+    </div>
 
     <div id="allAdd" class="allContainer">
+      <div class="container">
+        <h3>New Activity</h3>
 
-        <div class="container">
-            <h3>New Activity</h3>
+        <form action="/add-redirected" method="post" class="group" id="addForm">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="a name for the activity.."
+            value=""
+            required
+          />
 
-            <form action="/add-redirected" method="post" class="group" id="addForm">
-                <label for="name">Name</label>
-                <input type="text" name="name" placeholder="a name for the activity.." value=""  required>
+          <label for="category" class="tab">Category</label>
+          <select name="category" required>
+            <option disabled selected value>-- select a category --</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+            <option value="Sport">Sport</option>
+            <option value="Social">Social</option>
+            <option value="Spiritual">Spiritual</option>
+            <option value="Creative">Creative</option>
+            <option value="Chill">Chill</option>
+            <option value="Other">Other</option>
+          </select>
+          <br />
 
-                <label for="category" class="tab">Category</label>
-                <select name="category"  required>
-                    <option disabled selected value> -- select a category -- </option>
-                    <option value="Work">Work</option>
-                    <option value="Study">Study</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Social">Social</option>
-                    <option value="Spiritual">Spiritual</option>
-                    <option value="Creative">Creative</option>
-                    <option value="Chill">Chill</option>
-                    <option value="Other">Other</option>
-                </select>     <br>
+          <label for="date" class="tab">Date</label>
+          <input
+            type="date"
+            name="date"
+            id="dateField"
+            max="2024-12-31"
+            min="2024-01-01"
+            required
+          />
 
-                <label for="date"   class="tab">Date</label>
-                <input type="date" name="date" id="dateField" max="2024-12-31"  min="2024-01-01" required>
+          <label for="duration" class="tab" required>Duration (minutes)</label>
+          <input
+            type="number"
+            name="duration"
+            placeholder="(minutes)"
+            min="5"
+            value="10"
+          />
 
-            
+          <br />
 
-                <label for="duration" class="tab" required>Duration (minutes)</label>
-                <input type="number" name="duration" placeholder="(minutes)" min="5" value="10">   
-
-                <br>
-                
-                <input type="submit" value="Submit" id="submit">
-                <input type="reset" value="Reset" id="reset">
-            </form>
-        </div>
-
+          <input type="submit" value="Submit" id="submit" />
+          <input type="reset" value="Reset" id="reset" />
+        </form>
+      </div>
     </div>
-
 
     <!-- popup window to addd activities -->
 
     <div class="overlay" id="overlay"></div>
 
     <div class="popup" id="popup">
-        <div class="popup-content">
-            <div class="close" id="closePopupBtn">&times;</div>
+      <div class="popup-content">
+        <div class="close" id="closePopupBtn">&times;</div>
 
-            <div class="container">
-                <h3>About A-Tracker</h3>
-                <p>
-                    Track what activities you do daily and add information like name, category, date, and duration of activities in minutes.
-                    then visulaize your activities in charts to get benifit from the dashboard to track your activities.
-                </p>
-            </div>
-
+        <div class="container">
+          <h3>About A-Tracker</h3>
+          <p>
+            Track what activities you do daily and add information like name,
+            category, date, and duration of activities in minutes. then
+            visulaize your activities in charts to get benifit from the
+            dashboard to track your activities.
+          </p>
         </div>
+      </div>
     </div>
 
     <script src="/static/add.js"></script>
-</body>
+  </body>
 </html>

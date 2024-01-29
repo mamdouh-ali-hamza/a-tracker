@@ -1,75 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>A-Tracker</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <div id="nav">
-        <div id="welcome-dashboard">
-        </div>
-        <div id="pleaseEnter">
-            <p>Please Enter your username</p>
-        </div>
-        
-        <h1>A-Tracker</h1>
-        <div id="navbar">
-            <a href="/add" id="addNav">Add Activity</a>     
-            <a href="/activities" id="allNav">All Activities</a>
-            <a href="/dashboard" id="dashboardNav">Dashboard</a>
-            <a href="/">Home</a>
-            <a href="#" id="openPopupBtn">About</a>
-        </div>
+      <div id="welcome-dashboard"></div>
+      <div id="pleaseEnter">
+        <p>Please Enter your username</p>
+      </div>
+
+      <h1>A-Tracker</h1>
+      <div id="navbar">
+        <a href="/add" id="addNav">Add Activity</a>
+        <a href="/activities" id="allNav">All Activities</a>
+        <a href="/dashboard" id="dashboardNav">Dashboard</a>
+        <a href="/">Home</a>
+        <a href="#" id="openPopupBtn">About</a>
+      </div>
     </div>
 
     <div class="container">
+      <h1>A-Tracker</h1>
 
-        
-        <h1>A-Tracker</h1>
+      <div id="welcomeContainer">
+        <p id="welcome">Hello, My Friend</p>
+      </div>
 
-        <div id="welcomeContainer">
-            <p id="welcome">Hello, My Friend</p>
+      <div id="loginContainer">
+        <div id="loginChild" class="group">
+          <label for="usernameText">Username</label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            name="usernameText"
+            id="usernameText"
+          />
+          <input type="button" value="Enter" id="buttonEnter" class="button" />
         </div>
+      </div>
 
-        <div id="loginContainer">
-            <div id="loginChild" class="group">
-                <label for="usernameText">Username</label>
-                <input type="text" placeholder="Enter your username" name="usernameText" id="usernameText">
-                <input type="button" value="Enter" id="buttonEnter" class="button">
-            </div>
-        </div>
-
-        <p id="note"><strong>Improvements start with tracking&#128197;&#128202;</strong></p>
-
+      <p id="note">
+        <strong>Improvements start with tracking&#128197;&#128202;</strong>
+      </p>
     </div>
-
-
 
     <!-- popup window to addd activities -->
 
     <div class="overlay" id="overlay"></div>
 
     <div class="popup" id="popup">
-        <div class="popup-content">
-            <div class="close" id="closePopupBtn">&times;</div>
+      <div class="popup-content">
+        <div class="close" id="closePopupBtn">&times;</div>
 
-            <div class="container" id="popupWindow">
-                <h3>About A-Tracker</h3>
-                <p>
-                    Track what activities you do daily and add information like name, category, date, and duration of activities in minutes.
-                    then visulaize your activities in charts to get benifit from the dashboard to track your activities.
-                </p>
-            </div>
-
+        <div class="container" id="popupWindow">
+          <h3>About A-Tracker</h3>
+          <p>
+            Track what activities you do daily and add information like name,
+            category, date, and duration of activities in minutes. then
+            visulaize your activities in charts to get benifit from the
+            dashboard to track your activities.
+          </p>
         </div>
+      </div>
     </div>
 
-
-    
-
     <script src="/static/script.js"></script>
-</body>
+  </body>
 </html>

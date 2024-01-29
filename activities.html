@@ -1,87 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Activities</title>
-    <link rel="stylesheet" href="/static/activities.css">
-</head>
+    <link rel="stylesheet" href="/static/activities.css" />
+  </head>
 
-<body>
+  <body>
     <div id="nav">
-        <div id="welcome-dashboard">
-        </div>
-        <div id="pleaseEnter">
-            <p>Please Enter your username</p>
-        </div>
-        
-        <h1>A-Tracker</h1>
-        <div id="navbar">
-            <a href="/add" id="addNav">Add Activity</a>     
-            <a href="/activities" id="allNav">All Activities</a>
-            <a href="/dashboard" id="dashboardNav">Dashboard</a>
-            <a href="/">Home</a>
-            <a href="#" id="openPopupBtn">About</a>
-        </div>
-    </div>
+      <div id="welcome-dashboard"></div>
+      <div id="pleaseEnter">
+        <p>Please Enter your username</p>
+      </div>
 
-    
+      <h1>A-Tracker</h1>
+      <div id="navbar">
+        <a href="/add" id="addNav">Add Activity</a>
+        <a href="/activities" id="allNav">All Activities</a>
+        <a href="/dashboard" id="dashboardNav">Dashboard</a>
+        <a href="/">Home</a>
+        <a href="#" id="openPopupBtn">About</a>
+      </div>
+    </div>
 
     <div class="allContainer" id="allActivities">
-        <div class="container">
-            <div id="delete">
-                <form action="/delete-last" method="post">
-                    <input type="button" value="Delete Last Activity" id="buttonDeleteLast" class="buttonDelete">
-                    <input type="button" value="Back" id="backDeleteLast" class="buttonBack">
-                    <input type="submit" value="CONFIRM" id="confirmDeleteLast" class="buttonConfirm">
-                </form>
-    
-                <form action="/delete-all" method="post">
-                    <input type="button" value="Delete ALL Activities" id="buttonDeleteAll" class="buttonDelete">
-                    <input type="button" value="Back" id="backDeleteAll" class="buttonBack">
-                    <input type="submit" value="CONFIRM" id="confirmDeleteAll" class="buttonConfirm">
-                </form>
-            </div>
-            
+      <div class="container">
+        <div id="delete">
+          <form action="/delete-last" method="post">
+            <input
+              type="button"
+              value="Delete Last Activity"
+              id="buttonDeleteLast"
+              class="buttonDelete"
+            />
+            <input
+              type="button"
+              value="Back"
+              id="backDeleteLast"
+              class="buttonBack"
+            />
+            <input
+              type="submit"
+              value="CONFIRM"
+              id="confirmDeleteLast"
+              class="buttonConfirm"
+            />
+          </form>
 
-            <div class="group table-container" id="table-container">
-
-                <table>
-                    <thead id="tableHeader">
-                        <tr>
-                            $$TABLE_HEAD$$
-                        </tr>
-                    </thead>
-                    <tbody>
-                        $$DATA$$
-                    </tbody>
-                </table>
-
-            </div>
-            
+          <form action="/delete-all" method="post">
+            <input
+              type="button"
+              value="Delete ALL Activities"
+              id="buttonDeleteAll"
+              class="buttonDelete"
+            />
+            <input
+              type="button"
+              value="Back"
+              id="backDeleteAll"
+              class="buttonBack"
+            />
+            <input
+              type="submit"
+              value="CONFIRM"
+              id="confirmDeleteAll"
+              class="buttonConfirm"
+            />
+          </form>
         </div>
-    </div>
-    
 
+        <div class="group table-container" id="table-container">
+          <table>
+            <thead id="tableHeader">
+              <tr>
+                $$TABLE_HEAD$$
+              </tr>
+            </thead>
+            <tbody>
+              $$DATA$$
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
     <!-- popup window to addd activities -->
 
     <div class="overlay" id="overlay"></div>
 
     <div class="popup" id="popup">
-        <div class="popup-content">
-            <div class="close" id="closePopupBtn">&times;</div>
+      <div class="popup-content">
+        <div class="close" id="closePopupBtn">&times;</div>
 
-            <div class="container">
-                <h3>About A-Tracker</h3>
-                <p>
-                    Track what activities you do daily and add information like name, category, date, and duration of activities in minutes.
-                    then visulaize your activities in charts to get benifit from the dashboard to track your activities.
-                </p>
-            </div>
-
+        <div class="container">
+          <h3>About A-Tracker</h3>
+          <p>
+            Track what activities you do daily and add information like name,
+            category, date, and duration of activities in minutes. then
+            visulaize your activities in charts to get benifit from the
+            dashboard to track your activities.
+          </p>
         </div>
+      </div>
     </div>
 
     <script src="/static/activities.js"></script>
-</body>
+  </body>
 </html>
